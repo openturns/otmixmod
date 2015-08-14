@@ -1,0 +1,38 @@
+#                                               -*- cmake -*-
+#
+#  otmixmodConfig.cmake(.in)
+#
+#  Find otmixmod includes and libraries
+#
+#  (C) Copyright 2008-2013 Phimeca
+#
+
+# Use the following variables to compile and link against otmixmod:
+#  OTMIXMOD_FOUND          True if otmixmod was found on your system
+#  OTMIXMOD_USE_FILE       The file making otmixmod usable
+#  OTMIXMOD_DEFINITIONS    Definitions needed to build with otmixmod
+#  OTMIXMOD_INCLUDE_DIRS   List of directories where otmixmod' header file are
+#  OTMIXMOD_LIBRARIES      List of libraries to link against
+#  OTMIXMOD_LIBRARY_DIRS   List of directories containing otmixmod' libraries
+#  OTMIXMOD_ROOT_DIR       The base directory of otmixmod
+#  OTMIXMOD_VERSION_STRING A human-readable string containing the version
+#  OTMIXMOD_VERSION_MAJOR  The major version of otmixmod
+#  OTMIXMOD_VERSION_MINOR  The minor version of otmixmod
+#  OTMIXMOD_VERSION_PATCH  The patch version of otmixmod
+
+set ( OTMIXMOD_FOUND 1 )
+set ( OTMIXMOD_USE_FILE     "@OTMIXMOD_USE_FILE@" )
+
+set ( OTMIXMOD_DEFINITIONS  "@OTMIXMOD_DEFINITIONS@" )
+set ( OTMIXMOD_INCLUDE_DIR  "@OTMIXMOD_INCLUDE_DIR@" )
+set ( OTMIXMOD_INCLUDE_DIRS "@OTMIXMOD_INCLUDE_DIRS@" )
+set ( OTMIXMOD_LIBRARIES    "@OTMIXMOD_LIBRARIES@" )
+set ( OTMIXMOD_LIBRARY_DIRS "@OTMIXMOD_LIBRARY_DIRS@" )
+set ( OTMIXMOD_ROOT_DIR     "@OTMIXMOD_ROOT_DIR@" )
+
+set ( OTMIXMOD_VERSION_STRING "@OTMIXMOD_VERSION_STRING@" )
+set ( OTMIXMOD_VERSION_MAJOR  "@OTMIXMOD_VERSION_MAJOR@" )
+set ( OTMIXMOD_VERSION_MINOR  "@OTMIXMOD_VERSION_MINOR@" )
+set ( OTMIXMOD_VERSION_PATCH  "@OTMIXMOD_VERSION_PATCH@" )
+
+set (OTMIXMOD_PYTHON@PYTHON_VERSION_MAJOR@_MODULE_PATH "@OTMIXMOD_PYTHON_MODULE_PATH@")

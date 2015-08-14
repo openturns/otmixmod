@@ -1,0 +1,363 @@
+dataX=       [ marginal 1  ]
+  0 : [  0.259753   ]
+  1 : [  0.76561    ]
+  2 : [ -0.729447   ]
+  3 : [ -0.934994   ]
+  4 : [ -0.305886   ]
+  5 : [  0.938846   ]
+  6 : [  0.841359   ]
+  7 : [  0.0060803  ]
+  8 : [ -0.873588   ]
+  9 : [ -0.414486   ]
+ 10 : [  0.428764   ]
+ 11 : [ -0.233276   ]
+ 12 : [ -0.252465   ]
+ 13 : [  0.474536   ]
+ 14 : [  0.767007   ]
+ 15 : [ -0.410012   ]
+ 16 : [  0.857021   ]
+ 17 : [  0.641622   ]
+ 18 : [  0.36915    ]
+ 19 : [  0.656054   ]
+ 20 : [ -0.280396   ]
+ 21 : [  0.909492   ]
+ 22 : [  0.177231   ]
+ 23 : [ -0.635922   ]
+ 24 : [ -0.82843    ]
+ 25 : [  0.321455   ]
+ 26 : [ -0.579116   ]
+ 27 : [ -0.227543   ]
+ 28 : [ -0.950881   ]
+ 29 : [ -0.162163   ]
+ 30 : [  0.963682   ]
+ 31 : [  0.832264   ]
+ 32 : [  0.911206   ]
+ 33 : [ -0.0540999  ]
+ 34 : [ -0.480278   ]
+ 35 : [  0.32268    ]
+ 36 : [ -0.0204509  ]
+ 37 : [ -0.0629513  ]
+ 38 : [ -0.777844   ]
+ 39 : [ -0.309362   ]
+ 40 : [  0.311954   ]
+ 41 : [  0.350177   ]
+ 42 : [  0.95796    ]
+ 43 : [  0.292669   ]
+ 44 : [ -0.871575   ]
+ 45 : [  0.546039   ]
+ 46 : [  0.988399   ]
+ 47 : [ -0.833853   ]
+ 48 : [ -0.550266   ]
+ 49 : [ -0.394761   ]
+ 50 : [ -0.565578   ]
+ 51 : [  0.259329   ]
+ 52 : [  0.160307   ]
+ 53 : [ -0.0658243  ]
+ 54 : [  0.391988   ]
+ 55 : [  0.482199   ]
+ 56 : [  0.873638   ]
+ 57 : [  0.742896   ]
+ 58 : [ -0.21364    ]
+ 59 : [  0.258496   ]
+ 60 : [  0.827059   ]
+ 61 : [  0.826802   ]
+ 62 : [ -0.681228   ]
+ 63 : [  0.0888763  ]
+ 64 : [ -0.592695   ]
+ 65 : [  0.71159    ]
+ 66 : [ -0.129843   ]
+ 67 : [ -0.276671   ]
+ 68 : [ -0.995785   ]
+ 69 : [ -0.521133   ]
+ 70 : [ -0.489687   ]
+ 71 : [  0.183068   ]
+ 72 : [ -0.661567   ]
+ 73 : [  0.954669   ]
+ 74 : [ -0.034017   ]
+ 75 : [  0.418615   ]
+ 76 : [  0.915888   ]
+ 77 : [  0.406035   ]
+ 78 : [  0.640357   ]
+ 79 : [ -0.0362381  ]
+ 80 : [ -0.586864   ]
+ 81 : [  0.502388   ]
+ 82 : [  0.851062   ]
+ 83 : [  0.271847   ]
+ 84 : [  0.204324   ]
+ 85 : [  0.40301    ]
+ 86 : [ -0.84117    ]
+ 87 : [ -0.495334   ]
+ 88 : [  0.353951   ]
+ 89 : [ -0.283095   ]
+ 90 : [ -0.159742   ]
+ 91 : [ -0.357291   ]
+ 92 : [  0.597201   ]
+ 93 : [  0.151125   ]
+ 94 : [ -0.342562   ]
+ 95 : [  0.943365   ]
+ 96 : [  0.0352551  ]
+ 97 : [ -0.784359   ]
+ 98 : [  0.815578   ]
+ 99 : [  0.499489   ]
+100 : [  0.00261389 ]
+101 : [  0.0288039  ]
+102 : [  0.823441   ]
+103 : [  0.440229   ]
+104 : [  0.174003   ]
+105 : [  0.649234   ]
+106 : [  0.424302   ]
+107 : [ -0.702595   ]
+108 : [  0.648114   ]
+109 : [  0.119722   ]
+110 : [  0.306813   ]
+111 : [ -0.960107   ]
+112 : [  0.445114   ]
+113 : [  0.489005   ]
+114 : [ -0.428125   ]
+115 : [  0.715505   ]
+116 : [  0.0493718  ]
+117 : [  0.911702   ]
+118 : [ -0.507307   ]
+119 : [ -0.547677   ]
+120 : [  0.912921   ]
+121 : [  0.206932   ]
+122 : [ -0.0194831  ]
+123 : [ -0.121797   ]
+124 : [ -0.739196   ]
+125 : [  0.854672   ]
+126 : [ -0.796992   ]
+127 : [ -0.348457   ]
+128 : [ -0.199115   ]
+129 : [ -0.188678   ]
+130 : [ -0.202053   ]
+131 : [  0.788256   ]
+132 : [ -0.767585   ]
+133 : [ -0.568748   ]
+134 : [ -0.75495    ]
+135 : [ -0.70535    ]
+136 : [ -0.30318    ]
+137 : [  0.0491095  ]
+138 : [ -0.71521    ]
+139 : [ -0.41507    ]
+140 : [  0.0606239  ]
+141 : [  0.433935   ]
+142 : [ -0.508847   ]
+143 : [  0.15582    ]
+144 : [  0.769657   ]
+145 : [ -0.411452   ]
+146 : [  0.660583   ]
+147 : [  0.377581   ]
+148 : [ -0.878908   ]
+149 : [  0.60483    ]
+150 : [ -0.29761    ]
+151 : [  0.581238   ]
+152 : [ -0.0133495  ]
+153 : [ -0.371043   ]
+154 : [  0.451537   ]
+155 : [ -0.981399   ]
+156 : [  0.115085   ]
+157 : [  0.844533   ]
+158 : [ -0.308502   ]
+159 : [  0.530161   ]
+160 : [  0.232285   ]
+161 : [ -0.641893   ]
+162 : [ -0.242606   ]
+163 : [ -0.841825   ]
+164 : [  0.129349   ]
+165 : [ -0.524046   ]
+166 : [  0.342376   ]
+167 : [  0.316086   ]
+168 : [ -0.114243   ]
+169 : [  0.489546   ]
+170 : [  0.706446   ]
+171 : [ -0.517594   ]
+172 : [ -0.927311   ]
+173 : [ -0.0905315  ]
+174 : [  0.629995   ]
+175 : [  0.878058   ]
+176 : [  0.697772   ]
+177 : [ -0.115321   ]
+178 : [ -0.358146   ]
+179 : [ -0.496681   ]
+180 : [  0.0900279  ]
+181 : [ -0.987934   ]
+182 : [  0.720269   ]
+183 : [ -0.296853   ]
+184 : [  0.546391   ]
+185 : [  0.216179   ]
+186 : [ -0.037428   ]
+187 : [  0.605191   ]
+188 : [  0.250571   ]
+189 : [  0.470973   ]
+190 : [  0.205084   ]
+191 : [ -0.030154   ]
+192 : [ -0.70852    ]
+193 : [ -0.437249   ]
+194 : [ -0.538683   ]
+195 : [  0.655228   ]
+196 : [ -0.219745   ]
+197 : [ -0.500392   ]
+198 : [ -0.525948   ]
+199 : [  0.51557    ]
+Try with 2 cluster(s)
+Build the clusters
+Build the local experts
+Expert  0
+Expert  1
+Build the expert mixture
+Value at -1=-1.875881
+Value at  0=2.006619
+Value at  1=1.070604
+Validation
+expert input dimension= 1
+validation dimension= 1
+k= 2 error=1.6939e+01
+2 cluster(s) done, best= 2 error=1.6939e+01
+Try with 3 cluster(s)
+Build the clusters
+Build the local experts
+Expert  0
+Expert  1
+Expert  2
+Build the expert mixture
+Value at -1=-1.819036
+Value at  0=2.006619
+Value at  1=1.070604
+Validation
+expert input dimension= 1
+validation dimension= 1
+k= 3 error=5.3301e+00
+3 cluster(s) done, best= 3 error=5.3301e+00
+Try with 4 cluster(s)
+Build the clusters
+Build the local experts
+Expert  0
+Expert  1
+Expert  2
+Expert  3
+Build the expert mixture
+Value at -1=-1.819036
+Value at  0=2.000642
+Value at  1=1.079446
+Validation
+expert input dimension= 1
+validation dimension= 1
+k= 4 error=1.1841e-04
+4 cluster(s) done, best= 4 error=1.1841e-04
+Try with 5 cluster(s)
+Build the clusters
+Build the local experts
+Expert  0
+Expert  1
+Expert  2
+Expert  3
+Expert  4
+Build the expert mixture
+Value at -1=-1.819036
+Value at  0=2.000122
+Value at  1=1.080262
+Validation
+expert input dimension= 1
+validation dimension= 1
+k= 5 error=1.1468e-04
+5 cluster(s) done, best= 5 error=1.1468e-04
+Try with 6 cluster(s)
+Build the clusters
+Build the local experts
+Expert  0
+Expert  1
+Expert  2
+Expert  3
+Expert  4
+Expert  5
+Build the expert mixture
+Value at -1=-1.819036
+Value at  0=2.000109
+Value at  1=1.080262
+Validation
+expert input dimension= 1
+validation dimension= 1
+k= 6 error=3.4774e-05
+6 cluster(s) done, best= 6 error=3.4774e-05
+Try with 7 cluster(s)
+Build the clusters
+Build the local experts
+Expert  0
+Expert  1
+Expert  2
+Expert  3
+Expert  4
+Expert  5
+Expert  6
+Build the expert mixture
+Value at -1=-1.817981
+Value at  0=2.000122
+Value at  1=1.080262
+Validation
+expert input dimension= 1
+validation dimension= 1
+k= 7 error=8.2664e-06
+7 cluster(s) done, best= 7 error=8.2664e-06
+Try with 8 cluster(s)
+Build the clusters
+Build the local experts
+Expert  0
+Expert  1
+Expert  2
+Expert  3
+Expert  4
+Expert  5
+Expert  6
+Expert  7
+Build the expert mixture
+Value at -1=-1.817981
+Value at  0=2.000109
+Value at  1=1.080262
+Validation
+expert input dimension= 1
+validation dimension= 1
+k= 8 error=1.8964e-06
+8 cluster(s) done, best= 8 error=1.8964e-06
+Try with 9 cluster(s)
+Build the clusters
+Build the local experts
+Expert  0
+Expert  1
+Expert  2
+Expert  3
+Expert  4
+Expert  5
+Expert  6
+Expert  7
+Expert  8
+Build the expert mixture
+Value at -1=-1.817981
+Value at  0=2.000076
+Value at  1=1.080305
+Validation
+expert input dimension= 1
+validation dimension= 1
+k= 9 error=8.8941e-06
+9 cluster(s) done, best= 8 error=1.8964e-06
+Try with 10 cluster(s)
+Build the clusters
+Build the local experts
+Expert  0
+Expert  1
+Expert  2
+Expert  3
+Expert  4
+Expert  5
+Expert  6
+Expert  7
+Expert  8
+Expert  9
+Build the expert mixture
+Value at -1=-1.817981
+Value at  0=2.000058
+Value at  1=1.080466
+Validation
+expert input dimension= 1
+validation dimension= 1
+k= 10 error=9.5486e-06
+10 cluster(s) done, best= 8 error=1.8964e-06

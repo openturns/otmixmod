@@ -1,0 +1,15 @@
+** Installation **
+
+For the quick readers:
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=~/.local
+make 
+make check
+make install
+make installcheck
+
+Don't skip the check stages. They assure you the software you've just compiled behaves correctly.
+
+Enjoy !
+The OpenTURNS' development team.
