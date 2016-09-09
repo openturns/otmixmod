@@ -22,7 +22,8 @@
 #ifndef OTMIXMOD_COVARIANCEMODEL_HXX
 #define OTMIXMOD_COVARIANCEMODEL_HXX
 
-#include "TypedInterfaceObject.hxx"
+#include <openturns/TypedInterfaceObject.hxx>
+
 #include "MixmodCovarianceModelImplementation.hxx"
 
 namespace OTMIXMOD

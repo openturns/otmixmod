@@ -20,7 +20,8 @@
  *
  */
 #include "MixmodCovarianceModelImplementation.hxx"
-#include "Exception.hxx"
+
+#include <openturns/Exception.hxx>
 
 namespace OTMIXMOD
 {

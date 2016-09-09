@@ -21,11 +21,13 @@
  */
 
 #include "MixtureFactory.hxx"
-#include "Normal.hxx"
-#include "Collection.hxx"
-#include "Exception.hxx"
-#include "Path.hxx"
-#include "Os.hxx"
+
+#include <openturns/Normal.hxx>
+#include <openturns/Collection.hxx>
+#include <openturns/Exception.hxx>
+#include <openturns/Path.hxx>
+#include <openturns/Os.hxx>
+
 #include "XEMGaussianData.h"
 #include "XEMClusteringInput.h"
 #include "XEMClusteringOutput.h"
@@ -39,7 +41,7 @@ namespace OTMIXMOD
 
   /* Default constructor */
   MixtureFactory::MixtureFactory () :
-    OT::DistributionImplementationFactory(),
+    OT::DistributionFactoryImplementation(),
     atomsNumber_ (0),
     covarianceModel_ (Gaussian_pk_Lk_C())
   {
@@ -50,7 +52,7 @@ namespace OTMIXMOD
   /* Parameters constructor */
   MixtureFactory::MixtureFactory (const OT::UnsignedInteger atomsNumber,
                                   const MixmodCovarianceModelImplementation & covarianceModel) :
-    OT::DistributionImplementationFactory(),
+    OT::DistributionFactoryImplementation(),
     atomsNumber_ (atomsNumber),
     covarianceModel_ (covarianceModel)
   {
@@ -61,7 +63,7 @@ namespace OTMIXMOD
   /* Parameters constructor */
   MixtureFactory::MixtureFactory (const OT::UnsignedInteger atomsNumber,
                                   const MixmodCovarianceModel & covarianceModel) :
-    OT::DistributionImplementationFactory(),
+    OT::DistributionFactoryImplementation(),
     atomsNumber_ (atomsNumber),
     covarianceModel_ (covarianceModel)
   {
@@ -177,7 +179,7 @@ namespace OTMIXMOD
     return OT::Mixture(coll);
   }
 
-  MixtureFactory::Implementation MixtureFactory::build(const OT::DistributionImplementationFactory::NumericalPointCollection & parametersCollection) const
+  MixtureFactory::Implementation MixtureFactory::build(const OT::DistributionFactoryImplementation::NumericalPointCollection & parametersCollection) const
   {
     throw OT::NotYetImplementedException(HERE);
   }

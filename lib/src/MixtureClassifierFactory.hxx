@@ -22,9 +22,10 @@
 #ifndef OTMIXMOD_MIXTURECLASSIFIERFACTORY_HXX
 #define OTMIXMOD_MIXTURECLASSIFIERFACTORY_HXX
 
-#include "OTprivate.hxx"
+#include <openturns/OTprivate.hxx>
+#include <openturns/MixtureClassifier.hxx>
+
 #include "MixtureFactory.hxx"
-#include "MixtureClassifier.hxx"
 
 namespace OTMIXMOD
 {

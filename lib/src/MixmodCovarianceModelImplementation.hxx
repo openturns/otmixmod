@@ -22,8 +22,8 @@
 #ifndef OTMIXMOD_COVARIANCEMODELIMPLEMENTATION_HXX
 #define OTMIXMOD_COVARIANCEMODELIMPLEMENTATION_HXX
 
-#include "OTprivate.hxx"
-#include "PersistentObject.hxx"
+#include <openturns/OTprivate.hxx>
+#include <openturns/PersistentObject.hxx>
 
 namespace OTMIXMOD
 {

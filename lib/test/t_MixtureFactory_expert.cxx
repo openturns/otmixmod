@@ -21,16 +21,16 @@
  *
  */
 #include <cmath>
-#include "OT.hxx"
-#include "OTtestcode.hxx"
+#include <openturns/OT.hxx>
+#include <openturns/OTtestcode.hxx>
 #include "MixtureFactory.hxx"
-#include "Normal.hxx"
-#include "NumericalPoint.hxx"
-#include "NumericalSample.hxx"
-#include "Collection.hxx"
-#include "Distribution.hxx"
-#include "PlatformInfo.hxx"
-#include "Indices.hxx"
+#include <openturns/Normal.hxx>
+#include <openturns/NumericalPoint.hxx>
+#include <openturns/NumericalSample.hxx>
+#include <openturns/Collection.hxx>
+#include <openturns/Distribution.hxx>
+#include <openturns/PlatformInfo.hxx>
+#include <openturns/Indices.hxx>
 
 using namespace OTMIXMOD;
 

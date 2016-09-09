@@ -22,13 +22,14 @@
 #ifndef OTMIXMOD_MIXTUREFACTORY_HXX
 #define OTMIXMOD_MIXTUREFACTORY_HXX
 
-#include "OTprivate.hxx"
-#include "DistributionImplementationFactory.hxx"
 #include "MixmodCovarianceModel.hxx"
 #include "MixmodCovarianceModelImplementation.hxx"
 #include "Gaussian_pk_Lk_C.hxx"
-#include "Mixture.hxx"
-#include "Indices.hxx"
+
+#include <openturns/OTprivate.hxx>
+#include <openturns/DistributionFactoryImplementation.hxx>
+#include <openturns/Mixture.hxx>
+#include <openturns/Indices.hxx>
 
 
 namespace OTMIXMOD
@@ -38,7 +39,7 @@ namespace OTMIXMOD
    * @class MixtureFactory
    */
   class MixtureFactory
-    : public OT::DistributionImplementationFactory
+    : public OT::DistributionFactoryImplementation
   {
     CLASSNAME;
   public:
@@ -58,12 +59,12 @@ namespace OTMIXMOD
     virtual MixtureFactory * clone() const;
 
     /** Here is the interface that all derived class must implement */
-    using OT::DistributionImplementationFactory::build;
+    using OT::DistributionFactoryImplementation::build;
     Implementation build(const OT::NumericalSample & sample) const;
     Implementation build(const OT::NumericalSample & sample,
                          OT::Indices & labels,
                          OT::NumericalPoint & BICLogLikelihood) const;
-    Implementation build(const OT::DistributionImplementationFactory::NumericalPointCollection & parameters) const;
+    Implementation build(const OT::DistributionFactoryImplementation::NumericalPointCollection & parameters) const;
     Implementation build() const;
     OT::Mixture buildAsMixture(const OT::NumericalSample & sample) const;
     OT::Mixture buildAsMixture(const OT::NumericalSample & sample,
