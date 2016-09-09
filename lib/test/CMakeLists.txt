@@ -12,10 +12,8 @@ if ( MINGW )
 endif ()
 
 set ( CHECK_ENVIRONMENT 
-      "LD_LIBRARY_PATH=${INSTALL_DESTDIR}${LIBRARY_PATH}:$ENV{LD_LIBRARY_PATH}"
       ${ADAPT_CHECK_TESTS_EXPONENT} 
     )
-
 
 set ( CHECK_TO_BE_RUN )
 macro ( ot_check_test TESTNAME )
@@ -30,8 +28,7 @@ macro ( ot_check_test TESTNAME )
   endif ()
   set_target_properties ( ${TESTNAME_TGT} PROPERTIES
                                           INSTALL_RPATH "${CMAKE_BINARY_DIR}/lib/src;${CMAKE_INSTALL_RPATH}" )
-  get_target_property ( TESTNAME_LOC ${TESTNAME_TGT} LOCATION )
-
+  set ( TESTNAME_LOC ${CMAKE_CURRENT_BINARY_DIR}/${TESTNAME_TGT}${CMAKE_EXECUTABLE_SUFFIX} ) 
   set ( _CMD )
   set ( _PRE )
   set ( _POST )
@@ -64,7 +61,7 @@ macro ( ot_check_test TESTNAME )
     set ( EXTERNAL_COMMAND "./${TESTNAME_TGT} ${_PARAMS} > $DEBUG_FILE 2>&1" )
   else (_IGNOREOUT)
     set ( TESTNAME_OUT ${TESTNAME_TGT}.expout )
-    get_source_file_property ( OUTFILE_LOC ${TESTNAME_OUT} LOCATION )
+    set ( OUTFILE_LOC ${CMAKE_CURRENT_SOURCE_DIR}/${TESTNAME_OUT} ) 
     set ( COMMAND "( ${TESTNAME_LOC} ${_PARAMS} ${REPLACE_EOL} > ${CMAKE_CURRENT_BINARY_DIR}/${TESTNAME_TGT}.out ) && diff -u ${OUTFILE_LOC} ${CMAKE_CURRENT_BINARY_DIR}/${TESTNAME_TGT}.out" )
     set ( EXTERNAL_COMMAND "( ./${TESTNAME_TGT} ${_PARAMS} 2>$DEBUG_FILE | tr -d '\\\\r' > ${TESTNAME_TGT}.out ) && diff -u ${TESTNAME_OUT} ${TESTNAME_TGT}.out" )
   endif (_IGNOREOUT)
