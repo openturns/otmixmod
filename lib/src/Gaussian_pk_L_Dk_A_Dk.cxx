@@ -20,7 +20,8 @@
  *
  */
 #include "Gaussian_pk_L_Dk_A_Dk.hxx"
-#include "PersistentObjectFactory.hxx"
+
+#include <openturns/PersistentObjectFactory.hxx>
 
 namespace OTMIXMOD
 {
