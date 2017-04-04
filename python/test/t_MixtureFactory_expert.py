@@ -12,7 +12,7 @@ inputIndices.fill(0)
 outputIndices = Indices(dim)
 outputIndices.fill(dim)
 
-model = NumericalMathFunction("x", "(1.0 + sign(x)) * cos(x) - (sign(x) - 1) * sin(2*x)")
+model = Function("x", "(1.0 + sign(x)) * cos(x) - (sign(x) - 1) * sin(2*x)")
 dataX = Uniform().getSample(size)
 print('dataX=', dataX)
 dataX = dataX.sort()
@@ -21,7 +21,7 @@ dataY = model(dataX)
 dataXValid = Uniform().getSample(divmod(size, 5)[0])
 dataYValid = model(dataXValid)
 
-data =  NumericalSample(size, 2)
+data =  Sample(size, 2)
 for i in range(size):
     data[i, 0] = dataX[i, 0]
     data[i, 1] = dataY[i, 0]
@@ -35,7 +35,7 @@ stop = False
 covModel = Gaussian_pk_Lk_C()
 while not stop:
     print("Try with", k, "cluster(s)")
-    logLike = NumericalPoint(0)
+    logLike = Point(0)
     labels = Indices(0)
     
     # Classify data

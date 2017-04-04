@@ -44,7 +44,7 @@ namespace OTMIXMOD
     CLASSNAME;
   public:
 
-    typedef OT::Collection< OT::NumericalSample > NumericalSampleCollection;
+    typedef OT::Collection< OT::Sample > SampleCollection;
 
     /** Default constructor */
     MixtureFactory();
@@ -60,16 +60,16 @@ namespace OTMIXMOD
 
     /** Here is the interface that all derived class must implement */
     using OT::DistributionFactoryImplementation::build;
-    Implementation build(const OT::NumericalSample & sample) const;
-    Implementation build(const OT::NumericalSample & sample,
+    Implementation build(const OT::Sample & sample) const;
+    Implementation build(const OT::Sample & sample,
                          OT::Indices & labels,
-                         OT::NumericalPoint & BICLogLikelihood) const;
-    Implementation build(const OT::DistributionFactoryImplementation::NumericalPointCollection & parameters) const;
+                         OT::Point & BICLogLikelihood) const;
+    Implementation build(const OT::DistributionFactoryImplementation::PointCollection & parameters) const;
     Implementation build() const;
-    OT::Mixture buildAsMixture(const OT::NumericalSample & sample) const;
-    OT::Mixture buildAsMixture(const OT::NumericalSample & sample,
+    OT::Mixture buildAsMixture(const OT::Sample & sample) const;
+    OT::Mixture buildAsMixture(const OT::Sample & sample,
                                OT::Indices & labels,
-                               OT::NumericalPoint & BICLogLikelihood) const;
+                               OT::Point & BICLogLikelihood) const;
 
     /** Mixture Factory accessors */
     /** AtomsNumber accessors */
@@ -81,7 +81,7 @@ namespace OTMIXMOD
     MixmodCovarianceModel getCovarianceModel() const;
 
     /** Partition a given sample into nbClusters according to the given labels */
-    static NumericalSampleCollection BuildClusters(const OT::NumericalSample & data,
+    static SampleCollection BuildClusters(const OT::Sample & data,
                                                    const OT::Indices & labels,
                                                    const OT::UnsignedInteger nbClusters);
 

@@ -48,7 +48,7 @@ namespace OTMIXMOD
   }
 
   /* Build a classifier from a sample using the mixture factory */
-  OT::MixtureClassifier MixtureClassifierFactory::build(const OT::NumericalSample & sample) const
+  OT::MixtureClassifier MixtureClassifierFactory::build(const OT::Sample & sample) const
   {
     return OT::MixtureClassifier(mixtureFactory_.buildAsMixture(sample));
   }
