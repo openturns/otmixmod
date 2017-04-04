@@ -1,9 +1,9 @@
 nb clusters=3
-point=class=NumericalPoint name=Unnamed dimension=2 values=[-1.66667,-1.66667]
+point=class=Point name=Unnamed dimension=2 values=[-1.66667,-1.66667]
 reference pdf=0.0345418
 reference cdf=0.456312
-reference quantile(0.75)=class=NumericalPoint name=Unnamed dimension=2 values=[2.06331,2.06331]
+reference quantile(0.75)=class=Point name=Unnamed dimension=2 values=[2.06331,2.06331]
 estimated pdf=0.0348634
 estimated cdf=0.448425
-estimated quantile(0.75)=class=NumericalPoint name=Unnamed dimension=2 values=[2.03074,2.1049]
+estimated quantile(0.75)=class=Point name=Unnamed dimension=2 values=[2.03074,2.1049]
 done

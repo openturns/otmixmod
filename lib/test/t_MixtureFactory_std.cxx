@@ -25,8 +25,8 @@
 #include <openturns/OTtestcode.hxx>
 #include "MixtureFactory.hxx"
 #include <openturns/Normal.hxx>
-#include <openturns/NumericalPoint.hxx>
-#include <openturns/NumericalSample.hxx>
+#include <openturns/Point.hxx>
+#include <openturns/Sample.hxx>
 #include <openturns/Collection.hxx>
 #include <openturns/Distribution.hxx>
 #include <openturns/PlatformInfo.hxx>
@@ -51,27 +51,27 @@ int main (int argc, char *argv[])
         {
           R(i, i - 1) = 0.1;
         }
-      OT::Normal distribution1(OT::NumericalPoint(dim, -2.0), OT::NumericalPoint(dim, 1.2), R);
+      OT::Normal distribution1(OT::Point(dim, -2.0), OT::Point(dim, 1.2), R);
       coll.add(distribution1);
       for (OT::UnsignedInteger i = 1; i < dim; i++)
         {
           R(i, i - 1) = -0.2;
         }
-      OT::Normal distribution2(OT::NumericalPoint(dim, 2.0), OT::NumericalPoint(dim, 0.8), R);
+      OT::Normal distribution2(OT::Point(dim, 2.0), OT::Point(dim, 0.8), R);
       coll.add(distribution2);
-      OT::Normal distribution3(OT::NumericalPoint(dim, -5.0), OT::NumericalPoint(dim, 1.4), R);
+      OT::Normal distribution3(OT::Point(dim, -5.0), OT::Point(dim, 1.4), R);
       coll.add(distribution3);
 
       OT::Mixture distributionRef(coll);
 
-      OT::NumericalSample sample(distributionRef.getSample(size));
-      OT::NumericalScalar maxLL(0.0);
+      OT::Sample sample(distributionRef.getSample(size));
+      OT::Scalar maxLL(0.0);
       OT::UnsignedInteger bestNb(0);
       for (OT::UnsignedInteger nb = 1; nb < 6; ++nb)
         {
           MixtureFactory factory(nb);
           OT::Indices labels(0);
-          OT::NumericalPoint logLikelihood(0);
+          OT::Point logLikelihood(0);
           OT::Distribution estimatedDistribution(factory.build(sample, labels, logLikelihood));
           if (nb == 1)
             {
@@ -88,7 +88,7 @@ int main (int argc, char *argv[])
 
       MixtureFactory factory(bestNb);
       OT::Distribution estimatedDistribution(factory.build(sample));
-      OT::NumericalPoint point(distributionRef.getMean());
+      OT::Point point(distributionRef.getMean());
       fullprint << "point=" << point << std::endl;
       fullprint << "reference pdf=" << distributionRef.computePDF(point) << std::endl;
       fullprint << "reference cdf=" << distributionRef.computeCDF(point) << std::endl;

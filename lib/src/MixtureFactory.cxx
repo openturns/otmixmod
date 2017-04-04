@@ -78,29 +78,29 @@ namespace OTMIXMOD
   }
 
   /* Here is the interface that all derived class must implement */
-  MixtureFactory::Implementation MixtureFactory::build(const OT::NumericalSample & sample) const
+  MixtureFactory::Implementation MixtureFactory::build(const OT::Sample & sample) const
   {
     return buildAsMixture(sample).clone();
   }
 
-  MixtureFactory::Implementation MixtureFactory::build(const OT::NumericalSample & sample,
+  MixtureFactory::Implementation MixtureFactory::build(const OT::Sample & sample,
                                                        OT::Indices & labels,
-                                                       OT::NumericalPoint & BICLogLikelihood) const
+                                                       OT::Point & BICLogLikelihood) const
   {
     return buildAsMixture(sample, labels, BICLogLikelihood).clone();
   }
 
-  OT::Mixture MixtureFactory::buildAsMixture(const OT::NumericalSample & sample) const
+  OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample) const
   {
     OT::Indices labels(0);
-    OT::NumericalPoint BICLogLikelihood(0);
+    OT::Point BICLogLikelihood(0);
     // Just throw out the labels as they come for free with the mixture
     return buildAsMixture(sample, labels, BICLogLikelihood);
   }
 
-  OT::Mixture MixtureFactory::buildAsMixture(const OT::NumericalSample & sample,
+  OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample,
                                              OT::Indices & labels,
-                                             OT::NumericalPoint & BICLogLikelihood) const
+                                             OT::Point & BICLogLikelihood) const
   {
     const OT::UnsignedInteger sampleSize(sample.getSize());
     if (sampleSize == 0) throw OT::InvalidArgumentException(HERE) << "Error: cannot build a MixMod distribution from an empty sample";
@@ -147,9 +147,9 @@ namespace OTMIXMOD
     OT::Mixture::DistributionCollection coll(0);
     for (OT::UnsignedInteger i = 0; i < atomsNumber_; ++i)
       {
-        OT::NumericalPoint mean(dimension);
+        OT::Point mean(dimension);
         for (OT::UnsignedInteger j = 0; j < dimension; ++j) mean[j] = param->getTabMean()[i][j];
-        OT::NumericalScalar w(param->getTabProportion()[i]);
+        OT::Scalar w(param->getTabProportion()[i]);
         // A Mixmod matrix is a strange object, with no accessor to its elements...
         double ** xemMatrix(param->getTabSigma()[i]->storeToArray());
         OT::CovarianceMatrix covariance(dimension);
@@ -172,14 +172,14 @@ namespace OTMIXMOD
     int64_t * tabLabels = labelDescription->getLabel()->getTabLabel();
     for (OT::UnsignedInteger i = 0; i < sampleSize; ++i) labels[i] = tabLabels[i] - 1;
     delete [] tabLabels;
-    BICLogLikelihood = OT::NumericalPoint(3);
+    BICLogLikelihood = OT::Point(3);
     BICLogLikelihood[0] = param->getModel()->getLogLikelihood(false);
     BICLogLikelihood[1] = param->getModel()->getCompletedLogLikelihood();
     BICLogLikelihood[2] = param->getModel()->getEntropy();
     return OT::Mixture(coll);
   }
 
-  MixtureFactory::Implementation MixtureFactory::build(const OT::DistributionFactoryImplementation::NumericalPointCollection & parametersCollection) const
+  MixtureFactory::Implementation MixtureFactory::build(const OT::DistributionFactoryImplementation::PointCollection & parametersCollection) const
   {
     throw OT::NotYetImplementedException(HERE);
   }
@@ -212,13 +212,13 @@ namespace OTMIXMOD
   }
 
   /* Partition a given sample into nbClusters according to the given labels */
-  MixtureFactory::NumericalSampleCollection MixtureFactory::BuildClusters(const OT::NumericalSample & data,
+  MixtureFactory::SampleCollection MixtureFactory::BuildClusters(const OT::Sample & data,
                                                                           const OT::Indices & labels,
                                                                           const OT::UnsignedInteger nbClusters)
   {
     const OT::UnsignedInteger size(data.getSize());
     if (labels.getSize() != size) throw OT::InvalidArgumentException(HERE) << "Error: the data size=" << size << " must be equal to the labels size=" << labels.getSize();
-    NumericalSampleCollection clusters(nbClusters, OT::NumericalSample(0, data.getDimension()));
+    SampleCollection clusters(nbClusters, OT::Sample(0, data.getDimension()));
     for (OT::UnsignedInteger i = 0; i < size; ++i)
       {
         const OT::UnsignedInteger currentLabel(labels[i]);

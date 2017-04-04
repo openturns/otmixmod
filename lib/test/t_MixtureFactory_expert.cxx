@@ -25,8 +25,8 @@
 #include <openturns/OTtestcode.hxx>
 #include "MixtureFactory.hxx"
 #include <openturns/Normal.hxx>
-#include <openturns/NumericalPoint.hxx>
-#include <openturns/NumericalSample.hxx>
+#include <openturns/Point.hxx>
+#include <openturns/Sample.hxx>
 #include <openturns/Collection.hxx>
 #include <openturns/Distribution.hxx>
 #include <openturns/PlatformInfo.hxx>
@@ -51,15 +51,15 @@ int main (int argc, char *argv[])
       OT::Indices outputIndices(dim);
       outputIndices.fill(dim);
 
-      OT::NumericalMathFunction model("x", "(1.0 + sign(x)) * cos(x) - (sign(x) - 1) * sin(2*x)");
-      OT::NumericalSample dataX(OT::Uniform().getSample(size));
+      OT::Function model("x", "(1.0 + sign(x)) * cos(x) - (sign(x) - 1) * sin(2*x)");
+      OT::Sample dataX(OT::Uniform().getSample(size));
       dataX = dataX.sort();
-      OT::NumericalSample dataY = model(dataX);
+      OT::Sample dataY = model(dataX);
       // For validation
-      OT::NumericalSample dataXValid(OT::Uniform().getSample(size/5));
-      OT::NumericalSample dataYValid(model(dataXValid));
+      OT::Sample dataXValid(OT::Uniform().getSample(size/5));
+      OT::Sample dataYValid(model(dataXValid));
 
-      OT::NumericalSample data(size, 2);
+      OT::Sample data(size, 2);
       for (OT::UnsignedInteger i = 0; i < size; ++i)
         {
           data[i][0] = dataX[i][0];
@@ -68,7 +68,7 @@ int main (int argc, char *argv[])
 
       OT::ExpertMixture bestExpert;
       OT::UnsignedInteger bestCluster(0);
-      OT::NumericalScalar bestError(OT::SpecFunc::MaxNumericalScalar);
+      OT::Scalar bestError(OT::SpecFunc::MaxScalar);
       OT::UnsignedInteger k(2);
       OT::UnsignedInteger kmax(10);
       OT::Bool stop(false);
@@ -77,7 +77,7 @@ int main (int argc, char *argv[])
       while (!stop)
         {
           fullprint << "Try with " << k << " cluster(s)" << std::endl;
-          OT::NumericalPoint logLike(0);
+          OT::Point logLike(0);
           OT::Indices labels(0);
 
           // Classify data
@@ -85,7 +85,7 @@ int main (int argc, char *argv[])
 
           // Build the clusters
           fullprint << "Build the clusters" << std::endl;
-	  OT::Collection<OT::NumericalSample> clusters(MixtureFactory::BuildClusters(data, labels, k));
+	  OT::Collection<OT::Sample> clusters(MixtureFactory::BuildClusters(data, labels, k));
 
           // Build the local meta-models
           fullprint << "Build the local experts" << std::endl;
@@ -111,15 +111,15 @@ int main (int argc, char *argv[])
           fullprint << "Build the expert mixture" << std::endl;
           OT::MixtureClassifier classifier(mixture);
           OT::ExpertMixture expert(metaModels, classifier);
-          fullprint << "Value at -1=" << expert(OT::NumericalPoint(1, -1.0))[0] << std::endl;
-          fullprint << "Value at  0=" << expert(OT::NumericalPoint(1, 0.0))[0] << std::endl;
-          fullprint << "Value at  1=" << expert(OT::NumericalPoint(1, 1.0))[0] << std::endl;
+          fullprint << "Value at -1=" << expert(OT::Point(1, -1.0))[0] << std::endl;
+          fullprint << "Value at  0=" << expert(OT::Point(1, 0.0))[0] << std::endl;
+          fullprint << "Value at  1=" << expert(OT::Point(1, 1.0))[0] << std::endl;
           // Validation error
           fullprint << "Validation" << std::endl;
           fullprint << "expert input dimension=" << expert.getInputDimension() << std::endl;
           fullprint << "validation dimension=" << dataXValid.getDimension() << std::endl;
-          OT::NumericalSample dataYMeta(expert(dataXValid));
-          OT::NumericalScalar error(0.0);
+          OT::Sample dataYMeta(expert(dataXValid));
+          OT::Scalar error(0.0);
           for (OT::UnsignedInteger i = 0; i < dataYMeta.getSize(); ++i)
             error += (dataYValid[i] - dataYMeta[i]).normSquare();
           fullprint << "k=" << k << " error=" << error << std::endl;

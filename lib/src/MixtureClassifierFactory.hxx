@@ -48,7 +48,7 @@ namespace OTMIXMOD
     virtual MixtureClassifierFactory * clone() const;
 
     /** Build a classifier from a sample using the mixture factory */
-    OT::MixtureClassifier build(const OT::NumericalSample & sample) const;
+    OT::MixtureClassifier build(const OT::Sample & sample) const;
 
     /** Mixture Factory accessors */
     MixtureFactory getMixtureFactory() const;
