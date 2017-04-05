@@ -28,7 +28,7 @@ for i in range(size):
 
 bestExpert = 0
 bestCluster = 0
-bestError = SpecFunc.MaxNumericalScalar
+bestError = SpecFunc.MaxScalar
 k = 2
 kmax = 10
 stop = False
