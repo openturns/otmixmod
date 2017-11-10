@@ -12,7 +12,7 @@ inputIndices.fill(0)
 outputIndices = Indices(dim)
 outputIndices.fill(dim)
 
-model = Function("x", "(1.0 + sign(x)) * cos(x) - (sign(x) - 1) * sin(2*x)")
+model = SymbolicFunction("x", "(1.0 + sign(x)) * cos(x) - (sign(x) - 1) * sin(2*x)")
 dataX = Uniform().getSample(size)
 print('dataX=', dataX)
 dataX = dataX.sort()
