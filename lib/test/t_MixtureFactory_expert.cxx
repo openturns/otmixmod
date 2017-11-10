@@ -51,7 +51,7 @@ int main (int argc, char *argv[])
       OT::Indices outputIndices(dim);
       outputIndices.fill(dim);
 
-      OT::Function model("x", "(1.0 + sign(x)) * cos(x) - (sign(x) - 1) * sin(2*x)");
+      OT::SymbolicFunction model("x", "(1.0 + sign(x)) * cos(x) - (sign(x) - 1) * sin(2*x)");
       OT::Sample dataX(OT::Uniform().getSample(size));
       dataX = dataX.sort();
       OT::Sample dataY = model(dataX);
