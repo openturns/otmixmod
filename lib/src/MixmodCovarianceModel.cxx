@@ -25,7 +25,7 @@
 namespace OTMIXMOD
 {
 
-  CLASSNAMEINIT(MixmodCovarianceModel);
+  CLASSNAMEINIT(MixmodCovarianceModel)
 
   /* Default constructor */
   MixmodCovarianceModel::MixmodCovarianceModel()

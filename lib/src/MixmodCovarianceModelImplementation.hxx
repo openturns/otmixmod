@@ -39,7 +39,7 @@ namespace OTMIXMOD
   class MixmodCovarianceModelImplementation
     : public OT::PersistentObject
   {
-    CLASSNAME;
+    CLASSNAME
   public:
 
     /** Default constructor */

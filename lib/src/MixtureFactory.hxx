@@ -41,7 +41,7 @@ namespace OTMIXMOD
   class MixtureFactory
     : public OT::DistributionFactoryImplementation
   {
-    CLASSNAME;
+    CLASSNAME
   public:
 
     typedef OT::Collection< OT::Sample > SampleCollection;

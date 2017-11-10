@@ -41,7 +41,7 @@ namespace OTMIXMOD
   class MixmodCovarianceModel
     : public OT::TypedInterfaceObject<MixmodCovarianceModelImplementation>
   {
-    CLASSNAME;
+    CLASSNAME
   public:
 
     /** Default constructor */

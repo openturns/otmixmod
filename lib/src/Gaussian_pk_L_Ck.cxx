@@ -26,7 +26,7 @@
 namespace OTMIXMOD
 {
 
-  CLASSNAMEINIT(Gaussian_pk_L_Ck);
+  CLASSNAMEINIT(Gaussian_pk_L_Ck)
 
   /* Default constructor */
   Gaussian_pk_L_Ck::Gaussian_pk_L_Ck()

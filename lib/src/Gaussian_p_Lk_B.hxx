@@ -37,7 +37,7 @@ namespace OTMIXMOD
   class Gaussian_p_Lk_B
     : public MixmodCovarianceModelImplementation
   {
-    CLASSNAME;
+    CLASSNAME
   public:
 
     /** Default constructor */
