@@ -25,7 +25,7 @@
 namespace OTMIXMOD
 {
 
-  CLASSNAMEINIT (MixtureClassifierFactory);
+  CLASSNAMEINIT (MixtureClassifierFactory)
 
   /* Default constructor */
   MixtureClassifierFactory::MixtureClassifierFactory ()

@@ -35,7 +35,7 @@ namespace OTMIXMOD
    */
   class MixtureClassifierFactory
   {
-    CLASSNAME;
+    CLASSNAME
   public:
 
     /** Default constructor */

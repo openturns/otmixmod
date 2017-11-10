@@ -37,7 +37,7 @@
 namespace OTMIXMOD
 {
 
-  CLASSNAMEINIT (MixtureFactory);
+  CLASSNAMEINIT (MixtureFactory)
 
   /* Default constructor */
   MixtureFactory::MixtureFactory () :
