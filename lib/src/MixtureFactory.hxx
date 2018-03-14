@@ -60,12 +60,12 @@ namespace OTMIXMOD
 
     /** Here is the interface that all derived class must implement */
     using OT::DistributionFactoryImplementation::build;
-    Implementation build(const OT::Sample & sample) const;
-    Implementation build(const OT::Sample & sample,
-                         OT::Indices & labels,
-                         OT::Point & BICLogLikelihood) const;
-    Implementation build(const OT::DistributionFactoryImplementation::PointCollection & parameters) const;
-    Implementation build() const;
+    OT::Distribution build(const OT::Sample & sample) const;
+    OT::Distribution build(const OT::Sample & sample,
+                           OT::Indices & labels,
+                           OT::Point & BICLogLikelihood) const;
+    OT::Distribution build(const OT::DistributionFactoryImplementation::PointCollection & parameters) const;
+    OT::Distribution build() const;
     OT::Mixture buildAsMixture(const OT::Sample & sample) const;
     OT::Mixture buildAsMixture(const OT::Sample & sample,
                                OT::Indices & labels,
