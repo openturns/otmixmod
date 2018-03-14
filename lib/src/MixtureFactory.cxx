@@ -78,12 +78,12 @@ namespace OTMIXMOD
   }
 
   /* Here is the interface that all derived class must implement */
-  MixtureFactory::Implementation MixtureFactory::build(const OT::Sample & sample) const
+  OT::Distribution MixtureFactory::build(const OT::Sample & sample) const
   {
     return buildAsMixture(sample).clone();
   }
 
-  MixtureFactory::Implementation MixtureFactory::build(const OT::Sample & sample,
+  OT::Distribution MixtureFactory::build(const OT::Sample & sample,
                                                        OT::Indices & labels,
                                                        OT::Point & BICLogLikelihood) const
   {
@@ -179,12 +179,12 @@ namespace OTMIXMOD
     return OT::Mixture(coll);
   }
 
-  MixtureFactory::Implementation MixtureFactory::build(const OT::DistributionFactoryImplementation::PointCollection & parametersCollection) const
+  OT::Distribution MixtureFactory::build(const OT::DistributionFactoryImplementation::PointCollection & parametersCollection) const
   {
     throw OT::NotYetImplementedException(HERE);
   }
 
-  MixtureFactory::Implementation MixtureFactory::build() const
+  OT::Distribution MixtureFactory::build() const
   {
     return OT::Mixture(OT::Mixture::DistributionCollection(1, OT::Normal())).clone();
   }
