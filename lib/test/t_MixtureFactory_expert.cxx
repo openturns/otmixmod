@@ -1,9 +1,8 @@
 //                                               -*- C++ -*-
 /**
- *  @file  t_MixtureFactory_std.cxx
  *  @brief The test file of class MixtureFactory
  *
- *  (C) Copyright 2005-20011 EADS
+ *  Copyright 2005-2018 Airbus-EDF-IMACS-Phimeca
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public

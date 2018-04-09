@@ -1,6 +1,5 @@
 //                                               -*- C++ -*-
 /**
- *  @file  MixmodCovarianceModel.cxx
  *  @brief Abstract top-level class for all MixmodCovarianceModel
  *
  *  (C) Copyright 2011-2011 EADS

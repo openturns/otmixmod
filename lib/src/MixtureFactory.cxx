@@ -1,9 +1,8 @@
 //                                               -*- C++ -*-
 /**
- *  @file  MixtureFactory.cxx
  *  @brief Factory for MixMod distribution
  *
- *  (C) Copyright 2005-2011 EADS
+ *  Copyright 2005-2018 Airbus-EDF-IMACS-Phimeca
  *
  *  OTMixmod is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
