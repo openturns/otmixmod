@@ -26,31 +26,31 @@
 namespace OTMIXMOD
 {
 
-  /**
-   * @class Gaussian_p_L_C
-   *
-   * @brief The class implements the gaussian_p_L_C covariance model
-   *
-   * This class is derived from MixmodCovarianceModelImplementation.
-   */
-  class Gaussian_p_L_C
-    : public MixmodCovarianceModelImplementation
-  {
-    CLASSNAME
-  public:
+/**
+ * @class Gaussian_p_L_C
+ *
+ * @brief The class implements the gaussian_p_L_C covariance model
+ *
+ * This class is derived from MixmodCovarianceModelImplementation.
+ */
+class Gaussian_p_L_C
+  : public MixmodCovarianceModelImplementation
+{
+  CLASSNAME
+public:
 
-    /** Default constructor */
-    explicit Gaussian_p_L_C();
+  /** Default constructor */
+  explicit Gaussian_p_L_C();
 
-    /* Here is the interface that all derived class must implement */
+  /* Here is the interface that all derived class must implement */
 
-    /* Virtual constructor */
-    virtual Gaussian_p_L_C * clone() const;
+  /* Virtual constructor */
+  virtual Gaussian_p_L_C * clone() const;
 
-    /** MixMod name accessor */
-    virtual OT::String convertToMixmod() const;
+  /** MixMod name accessor */
+  virtual OT::String convertToMixmod() const;
 
-  }; /* class Gaussian_p_L_C */
+}; /* class Gaussian_p_L_C */
 
 } // namespace OTMIXMOD
 

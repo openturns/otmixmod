@@ -1,7 +1,7 @@
 from __future__ import print_function
 from openturns import *
 from otmixmod import *
-    
+
 size = 200
 dim = 1
 
@@ -12,7 +12,8 @@ inputIndices.fill(0)
 outputIndices = Indices(dim)
 outputIndices.fill(dim)
 
-model = SymbolicFunction("x", "(1.0 + sign(x)) * cos(x) - (sign(x) - 1) * sin(2*x)")
+model = SymbolicFunction(
+    "x", "(1.0 + sign(x)) * cos(x) - (sign(x) - 1) * sin(2*x)")
 dataX = Uniform().getSample(size)
 print('dataX=', dataX)
 dataX = dataX.sort()
@@ -21,7 +22,7 @@ dataY = model(dataX)
 dataXValid = Uniform().getSample(divmod(size, 5)[0])
 dataYValid = model(dataXValid)
 
-data =  Sample(size, 2)
+data = Sample(size, 2)
 for i in range(size):
     data[i, 0] = dataX[i, 0]
     data[i, 1] = dataY[i, 0]
@@ -37,7 +38,7 @@ while not stop:
     print("Try with", k, "cluster(s)")
     logLike = Point(0)
     labels = Indices(0)
-    
+
     # Classify data
     mixture, labels, logLike = MixtureFactory(k, covModel).buildAsMixture(data)
 
@@ -51,19 +52,23 @@ while not stop:
     for i in range(k):
         print("Expert ", i)
         # Extract the distribution of the current cluster
-        distribution = mixture.getDistributionCollection()[i].getMarginal(inputIndices)
+        distribution = mixture.getDistributionCollection()[
+            i].getMarginal(inputIndices)
         # Build the local meta model using PCE
         # We use a projection strategy
         projection = ProjectionStrategy(LeastSquaresStrategy(distribution))
         # We use an Hermite chaos expansion
-        basis = OrthogonalProductPolynomialFactory(PolynomialFamilyCollection(dim, OrthogonalUniVariatePolynomialFamily(HermiteFactory())))
+        basis = OrthogonalProductPolynomialFactory(
+            PolynomialFamilyCollection(dim, OrthogonalUniVariatePolynomialFamily(HermiteFactory())))
         # FixedStrategy
-        if k==1:
+        if k == 1:
             degree = 16
         else:
             degree = 2
-        adaptive = AdaptiveStrategy(OrthogonalBasis(basis), EnumerateFunction().getStrataCumulatedCardinal(degree))
-        algo = FunctionalChaosAlgorithm(clusters[i].getMarginal(inputIndices), clusters[i].getMarginal(outputIndices), distribution, adaptive, projection)
+        adaptive = AdaptiveStrategy(
+            OrthogonalBasis(basis), EnumerateFunction().getStrataCumulatedCardinal(degree))
+        algo = FunctionalChaosAlgorithm(clusters[i].getMarginal(inputIndices), clusters[
+                                        i].getMarginal(outputIndices), distribution, adaptive, projection)
         algo.run()
         metaModels.add(algo.getResult().getMetaModel())
 

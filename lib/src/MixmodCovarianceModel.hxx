@@ -28,31 +28,31 @@
 namespace OTMIXMOD
 {
 
-  /**
-   * @class MixmodCovarianceModel
-   *
-   * @brief The class describes the concept of a covariance model.
-   *
-   * The implementation defined what covariance model is actually assumed for
-   * the several atoms of a mixture.
-   * @see MixmodCovarianceModelImplementation
-   */
-  class MixmodCovarianceModel
-    : public OT::TypedInterfaceObject<MixmodCovarianceModelImplementation>
-  {
-    CLASSNAME
-  public:
+/**
+ * @class MixmodCovarianceModel
+ *
+ * @brief The class describes the concept of a covariance model.
+ *
+ * The implementation defined what covariance model is actually assumed for
+ * the several atoms of a mixture.
+ * @see MixmodCovarianceModelImplementation
+ */
+class MixmodCovarianceModel
+  : public OT::TypedInterfaceObject<MixmodCovarianceModelImplementation>
+{
+  CLASSNAME
+public:
 
-    /** Default constructor */
-    MixmodCovarianceModel();
+  /** Default constructor */
+  MixmodCovarianceModel();
 
-    /** Constructor from implementation */
-    MixmodCovarianceModel(const MixmodCovarianceModelImplementation & impl);
+  /** Constructor from implementation */
+  MixmodCovarianceModel(const MixmodCovarianceModelImplementation & impl);
 
-    /** MixMod name accessor */
-    OT::String convertToMixmod() const;
+  /** MixMod name accessor */
+  OT::String convertToMixmod() const;
 
-  }; /* class MixmodCovarianceModel */
+}; /* class MixmodCovarianceModel */
 
 } // namespace OTMIXMOD
 

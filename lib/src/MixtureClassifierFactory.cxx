@@ -24,44 +24,44 @@
 namespace OTMIXMOD
 {
 
-  CLASSNAMEINIT (MixtureClassifierFactory)
+CLASSNAMEINIT (MixtureClassifierFactory)
 
-  /* Default constructor */
-  MixtureClassifierFactory::MixtureClassifierFactory ()
-    : mixtureFactory_()
-  {
-    // Nothing to do
-  }
+/* Default constructor */
+MixtureClassifierFactory::MixtureClassifierFactory ()
+  : mixtureFactory_()
+{
+  // Nothing to do
+}
 
-  /* Parameters constructor */
-  MixtureClassifierFactory::MixtureClassifierFactory (const MixtureFactory & mixtureFactory)
-    : mixtureFactory_(mixtureFactory)
-  {
-    // Nothing to do
-  }
+/* Parameters constructor */
+MixtureClassifierFactory::MixtureClassifierFactory (const MixtureFactory & mixtureFactory)
+  : mixtureFactory_(mixtureFactory)
+{
+  // Nothing to do
+}
 
-  /* Virtual constructor */
-  MixtureClassifierFactory * MixtureClassifierFactory::clone () const
-  {
-    return new MixtureClassifierFactory(*this);
-  }
+/* Virtual constructor */
+MixtureClassifierFactory * MixtureClassifierFactory::clone () const
+{
+  return new MixtureClassifierFactory(*this);
+}
 
-  /* Build a classifier from a sample using the mixture factory */
-  OT::MixtureClassifier MixtureClassifierFactory::build(const OT::Sample & sample) const
-  {
-    return OT::MixtureClassifier(mixtureFactory_.buildAsMixture(sample));
-  }
+/* Build a classifier from a sample using the mixture factory */
+OT::MixtureClassifier MixtureClassifierFactory::build(const OT::Sample & sample) const
+{
+  return OT::MixtureClassifier(mixtureFactory_.buildAsMixture(sample));
+}
 
 
-  /* MixtureClassifier accessors */
-  MixtureFactory MixtureClassifierFactory::getMixtureFactory() const
-  {
-    return mixtureFactory_;
-  }
+/* MixtureClassifier accessors */
+MixtureFactory MixtureClassifierFactory::getMixtureFactory() const
+{
+  return mixtureFactory_;
+}
 
-  void MixtureClassifierFactory::setMixtureFactory(const MixtureFactory & mixtureFactory)
-  {
-    mixtureFactory_ = mixtureFactory;
-  }
+void MixtureClassifierFactory::setMixtureFactory(const MixtureFactory & mixtureFactory)
+{
+  mixtureFactory_ = mixtureFactory;
+}
 
 } // namespace OTMIXMOD

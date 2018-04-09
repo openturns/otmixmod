@@ -25,21 +25,21 @@
 namespace OTMIXMOD
 {
 
-  CLASSNAMEINIT(MixmodCovarianceModelImplementation)
+CLASSNAMEINIT(MixmodCovarianceModelImplementation)
 
-  /* Default constructor */
-  MixmodCovarianceModelImplementation::MixmodCovarianceModelImplementation()
-    : PersistentObject()
-  {
-    // Nothing to do
-  }
+/* Default constructor */
+MixmodCovarianceModelImplementation::MixmodCovarianceModelImplementation()
+  : PersistentObject()
+{
+  // Nothing to do
+}
 
-  /* Here is the interface that all derived class must implement */
+/* Here is the interface that all derived class must implement */
 
-  /** MixMod name accessor */
-  OT::String MixmodCovarianceModelImplementation::convertToMixmod() const
-  {
-    throw OT::NotYetImplementedException(HERE);
-  }
+/** MixMod name accessor */
+OT::String MixmodCovarianceModelImplementation::convertToMixmod() const
+{
+  throw OT::NotYetImplementedException(HERE);
+}
 
 } // namespace OTMIXMOD

@@ -27,30 +27,30 @@
 namespace OTMIXMOD
 {
 
-  /**
-   * @class MixmodCovarianceModelImplementation
-   *
-   * @brief The class implements the concept of comparison operator defined in MixmodCovarianceModel.
-   *
-   * This class is abstract so it can not be instanciated. It must be derived.
-   * @see MixmodCovarianceModel
-   */
-  class MixmodCovarianceModelImplementation
-    : public OT::PersistentObject
-  {
-    CLASSNAME
-  public:
+/**
+ * @class MixmodCovarianceModelImplementation
+ *
+ * @brief The class implements the concept of comparison operator defined in MixmodCovarianceModel.
+ *
+ * This class is abstract so it can not be instanciated. It must be derived.
+ * @see MixmodCovarianceModel
+ */
+class MixmodCovarianceModelImplementation
+  : public OT::PersistentObject
+{
+  CLASSNAME
+public:
 
-    /** Default constructor */
-    MixmodCovarianceModelImplementation();
+  /** Default constructor */
+  MixmodCovarianceModelImplementation();
 
-    /** MixMod name accessor */
-    virtual OT::String convertToMixmod() const;
+  /** MixMod name accessor */
+  virtual OT::String convertToMixmod() const;
 
-    /* Virtual constructor */
-    virtual MixmodCovarianceModelImplementation * clone() const = 0;
+  /* Virtual constructor */
+  virtual MixmodCovarianceModelImplementation * clone() const = 0;
 
-  }; /* class MixmodCovarianceModelImplementation */
+}; /* class MixmodCovarianceModelImplementation */
 
 } // namespace OTMIXMOD
 

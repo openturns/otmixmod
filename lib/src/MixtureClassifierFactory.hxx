@@ -29,36 +29,36 @@
 namespace OTMIXMOD
 {
 
-  /**
-   * @class MixtureClassifierFactory
-   */
-  class MixtureClassifierFactory
-  {
-    CLASSNAME
-  public:
+/**
+ * @class MixtureClassifierFactory
+ */
+class MixtureClassifierFactory
+{
+  CLASSNAME
+public:
 
-    /** Default constructor */
-    MixtureClassifierFactory();
+  /** Default constructor */
+  MixtureClassifierFactory();
 
-    /** Parameters constructor */
-    MixtureClassifierFactory(const MixtureFactory & mixtureFactory);
+  /** Parameters constructor */
+  MixtureClassifierFactory(const MixtureFactory & mixtureFactory);
 
-    /** Virtual constructor */
-    virtual MixtureClassifierFactory * clone() const;
+  /** Virtual constructor */
+  virtual MixtureClassifierFactory * clone() const;
 
-    /** Build a classifier from a sample using the mixture factory */
-    OT::MixtureClassifier build(const OT::Sample & sample) const;
+  /** Build a classifier from a sample using the mixture factory */
+  OT::MixtureClassifier build(const OT::Sample & sample) const;
 
-    /** Mixture Factory accessors */
-    MixtureFactory getMixtureFactory() const;
-    void setMixtureFactory(const MixtureFactory & mixtureFactory);
+  /** Mixture Factory accessors */
+  MixtureFactory getMixtureFactory() const;
+  void setMixtureFactory(const MixtureFactory & mixtureFactory);
 
-  private:
+private:
 
-    /** The underlying mixture factory */
-    MixtureFactory mixtureFactory_;
+  /** The underlying mixture factory */
+  MixtureFactory mixtureFactory_;
 
-  }; /* class MixtureClassifierFactory */
+}; /* class MixtureClassifierFactory */
 
 
 } // namespace OTMIXMOD
