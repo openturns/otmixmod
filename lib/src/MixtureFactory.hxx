@@ -34,70 +34,70 @@
 namespace OTMIXMOD
 {
 
-  /**
-   * @class MixtureFactory
+/**
+ * @class MixtureFactory
+ */
+class MixtureFactory
+  : public OT::DistributionFactoryImplementation
+{
+  CLASSNAME
+public:
+
+  typedef OT::Collection< OT::Sample > SampleCollection;
+
+  /** Default constructor */
+  MixtureFactory();
+
+  /** Parameters constructor */
+  MixtureFactory(const OT::UnsignedInteger atomsNumber,
+                 const MixmodCovarianceModelImplementation & covarianceModel = Gaussian_pk_Lk_C());
+  MixtureFactory(const OT::UnsignedInteger atomsNumber,
+                 const MixmodCovarianceModel & covarianceModel);
+
+  /** Virtual constructor */
+  virtual MixtureFactory * clone() const;
+
+  /** Here is the interface that all derived class must implement */
+  using OT::DistributionFactoryImplementation::build;
+  OT::Distribution build(const OT::Sample & sample) const;
+  OT::Distribution build(const OT::Sample & sample,
+                         OT::Indices & labels,
+                         OT::Point & BICLogLikelihood) const;
+  OT::Distribution build(const OT::DistributionFactoryImplementation::PointCollection & parameters) const;
+  OT::Distribution build() const;
+  OT::Mixture buildAsMixture(const OT::Sample & sample) const;
+  OT::Mixture buildAsMixture(const OT::Sample & sample,
+                             OT::Indices & labels,
+                             OT::Point & BICLogLikelihood) const;
+
+  /** Mixture Factory accessors */
+  /** AtomsNumber accessors */
+  void setAtomsNumber(const OT::UnsignedInteger & number);
+  OT::UnsignedInteger getAtomsNumber() const;
+
+  /** MixmodCovariance model accessors */
+  void setCovarianceModel(const MixmodCovarianceModel & covarianceModel);
+  MixmodCovarianceModel getCovarianceModel() const;
+
+  /** Partition a given sample into nbClusters according to the given labels */
+  static SampleCollection BuildClusters(const OT::Sample & data,
+                                        const OT::Indices & labels,
+                                        const OT::UnsignedInteger nbClusters);
+
+  /** Mixmod PRNG state accessor */
+  void setState(const OT::UnsignedInteger yState,
+                const OT::UnsignedInteger zState);
+
+private:
+  /** The main parameter set of the factory */
+  OT::UnsignedInteger atomsNumber_;
+  MixmodCovarianceModel covarianceModel_;
+
+  /** \todo Later :
+   * MixModAlgorithm mixmodAlgorithm_;
    */
-  class MixtureFactory
-    : public OT::DistributionFactoryImplementation
-  {
-    CLASSNAME
-  public:
 
-    typedef OT::Collection< OT::Sample > SampleCollection;
-
-    /** Default constructor */
-    MixtureFactory();
-
-    /** Parameters constructor */
-    MixtureFactory(const OT::UnsignedInteger atomsNumber,
-                   const MixmodCovarianceModelImplementation & covarianceModel = Gaussian_pk_Lk_C());
-    MixtureFactory(const OT::UnsignedInteger atomsNumber,
-                   const MixmodCovarianceModel & covarianceModel);
-
-    /** Virtual constructor */
-    virtual MixtureFactory * clone() const;
-
-    /** Here is the interface that all derived class must implement */
-    using OT::DistributionFactoryImplementation::build;
-    OT::Distribution build(const OT::Sample & sample) const;
-    OT::Distribution build(const OT::Sample & sample,
-                           OT::Indices & labels,
-                           OT::Point & BICLogLikelihood) const;
-    OT::Distribution build(const OT::DistributionFactoryImplementation::PointCollection & parameters) const;
-    OT::Distribution build() const;
-    OT::Mixture buildAsMixture(const OT::Sample & sample) const;
-    OT::Mixture buildAsMixture(const OT::Sample & sample,
-                               OT::Indices & labels,
-                               OT::Point & BICLogLikelihood) const;
-
-    /** Mixture Factory accessors */
-    /** AtomsNumber accessors */
-    void setAtomsNumber(const OT::UnsignedInteger & number);
-    OT::UnsignedInteger getAtomsNumber() const;
-
-    /** MixmodCovariance model accessors */
-    void setCovarianceModel(const MixmodCovarianceModel & covarianceModel);
-    MixmodCovarianceModel getCovarianceModel() const;
-
-    /** Partition a given sample into nbClusters according to the given labels */
-    static SampleCollection BuildClusters(const OT::Sample & data,
-                                                   const OT::Indices & labels,
-                                                   const OT::UnsignedInteger nbClusters);
-
-    /** Mixmod PRNG state accessor */
-    void setState(const OT::UnsignedInteger yState,
-                  const OT::UnsignedInteger zState);
-
-  private:
-    /** The main parameter set of the factory */
-    OT::UnsignedInteger atomsNumber_;
-    MixmodCovarianceModel covarianceModel_;
-
-    /** \todo Later :
-     * MixModAlgorithm mixmodAlgorithm_;
-     */
-
-  }; /* class MixtureFactory */
+}; /* class MixtureFactory */
 
 
 } // namespace OTMIXMOD

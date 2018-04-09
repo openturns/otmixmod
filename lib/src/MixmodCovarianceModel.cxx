@@ -24,28 +24,28 @@
 namespace OTMIXMOD
 {
 
-  CLASSNAMEINIT(MixmodCovarianceModel)
+CLASSNAMEINIT(MixmodCovarianceModel)
 
-  /* Default constructor */
-  MixmodCovarianceModel::MixmodCovarianceModel()
-    : OT::TypedInterfaceObject<MixmodCovarianceModelImplementation>(new Gaussian_pk_Lk_C)
-  {
-    // Nothing to do
-  }
-
-
-  /* Constructor from implementation */
-  MixmodCovarianceModel::MixmodCovarianceModel(const MixmodCovarianceModelImplementation & impl)
-    : OT::TypedInterfaceObject<MixmodCovarianceModelImplementation>(impl.clone())
-  {
-    // Nothing to do
-  }
+/* Default constructor */
+MixmodCovarianceModel::MixmodCovarianceModel()
+  : OT::TypedInterfaceObject<MixmodCovarianceModelImplementation>(new Gaussian_pk_Lk_C)
+{
+  // Nothing to do
+}
 
 
-  /* MixMod name accessor */
-  OT::String MixmodCovarianceModel::convertToMixmod() const
-  {
-    return getImplementation()->convertToMixmod();
-  }
+/* Constructor from implementation */
+MixmodCovarianceModel::MixmodCovarianceModel(const MixmodCovarianceModelImplementation & impl)
+  : OT::TypedInterfaceObject<MixmodCovarianceModelImplementation>(impl.clone())
+{
+  // Nothing to do
+}
+
+
+/* MixMod name accessor */
+OT::String MixmodCovarianceModel::convertToMixmod() const
+{
+  return getImplementation()->convertToMixmod();
+}
 
 } // namespace OTMIXMOD

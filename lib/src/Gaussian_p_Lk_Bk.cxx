@@ -25,27 +25,27 @@
 namespace OTMIXMOD
 {
 
-  CLASSNAMEINIT(Gaussian_p_Lk_Bk)
+CLASSNAMEINIT(Gaussian_p_Lk_Bk)
 
-  /* Default constructor */
-  Gaussian_p_Lk_Bk::Gaussian_p_Lk_Bk()
-    : MixmodCovarianceModelImplementation()
-  {
-    // Nothing to do
-  }
+/* Default constructor */
+Gaussian_p_Lk_Bk::Gaussian_p_Lk_Bk()
+  : MixmodCovarianceModelImplementation()
+{
+  // Nothing to do
+}
 
-  /* Here is the interface that all derived class must implement */
+/* Here is the interface that all derived class must implement */
 
-  /* Virtual constructor */
-  Gaussian_p_Lk_Bk * Gaussian_p_Lk_Bk::clone() const
-  {
-    return new Gaussian_p_Lk_Bk(*this);
-  }
+/* Virtual constructor */
+Gaussian_p_Lk_Bk * Gaussian_p_Lk_Bk::clone() const
+{
+  return new Gaussian_p_Lk_Bk(*this);
+}
 
-  /* Mixmod name accessor */
-  OT::String Gaussian_p_Lk_Bk::convertToMixmod() const
-  {
-    return "Gaussian_p_Lk_Bk";
-  }
+/* Mixmod name accessor */
+OT::String Gaussian_p_Lk_Bk::convertToMixmod() const
+{
+  return "Gaussian_p_Lk_Bk";
+}
 
 } // namespace OTMIXMOD
