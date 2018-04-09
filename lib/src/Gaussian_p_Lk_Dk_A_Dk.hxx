@@ -1,9 +1,8 @@
 //                                               -*- C++ -*-
 /**
- *  @file  Gaussian_p_Lk_Dk_A_Dk.hxx
  *  @brief Implementation of the gaussian_p_Lk_Dk_A_Dk covariance model
  *
- *  (C) Copyright 2005-2011 EADS
+ *  Copyright 2005-2018 Airbus-EDF-IMACS-Phimeca
  *
  *  OTMixmod is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
