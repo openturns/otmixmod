@@ -23,18 +23,19 @@ macro ( ot_add_python_module MODULENAME SOURCEFILE )
     endif ()
   endforeach ()
 
-  swig_add_module ( ${MODULENAME} python ${SOURCEFILE} ${swig_other_sources} )
-  swig_link_libraries ( ${MODULENAME} otmixmod )
+  # swig_add_module is deprecated
+  if (CMAKE_VERSION VERSION_LESS 3.8)
+    swig_add_module (${MODULENAME} python ${SOURCEFILE} ${swig_other_sources} )
+  else ()
+    swig_add_library (${MODULENAME} LANGUAGE python SOURCES ${SOURCEFILE} ${swig_other_sources})
+  endif ()
+  swig_link_libraries (${MODULENAME} otmixmod)
   if ( LINK_PYTHON_LIBRARY )
     swig_link_libraries ( ${MODULENAME} ${PYTHON_LIBRARIES} )
   endif ()
 
   set_target_properties ( ${SWIG_MODULE_${MODULENAME}_REAL_NAME} PROPERTIES NO_SONAME ON )
 
-  if ( MINGW )
-    set_target_properties ( ${SWIG_MODULE_${MODULENAME}_REAL_NAME} PROPERTIES
-                                                                   LINK_FLAGS "-shared ${CMAKE_EXE_LINKER_FLAGS}" )
-  endif ()
   list ( APPEND PYTHON_MODULES ${MODULENAME} )
 endmacro ( ot_add_python_module )
 
