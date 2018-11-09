@@ -18,7 +18,7 @@
  *  along with OTMixmod.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "Gaussian_p_L_D_Ak_D.hxx"
+#include "otmixmod/Gaussian_p_L_D_Ak_D.hxx"
 
 #include <openturns/PersistentObjectFactory.hxx>
 

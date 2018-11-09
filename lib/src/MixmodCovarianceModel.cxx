@@ -18,8 +18,8 @@
  *  along with OTMixmod.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "MixmodCovarianceModel.hxx"
-#include "Gaussian_pk_Lk_C.hxx"
+#include "otmixmod/MixmodCovarianceModel.hxx"
+#include "otmixmod/Gaussian_pk_Lk_C.hxx"
 
 namespace OTMIXMOD
 {

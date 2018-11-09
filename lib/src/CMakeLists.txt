@@ -80,12 +80,20 @@ if ( NOT DEFINED LIB_SOVERSION )
 endif ()
 set_target_properties ( otmixmod PROPERTIES VERSION ${LIB_VERSION} )
 set_target_properties ( otmixmod PROPERTIES SOVERSION ${LIB_SOVERSION} )
-# set_target_properties ( OTMIXMOD PROPERTIES CLEAN_DIRECT_OUTPUT 1 OUTPUT_NAME OTMIXMOD )
-target_link_libraries ( otmixmod ${OPENTURNS_LIBRARIES} )
+target_link_libraries (otmixmod ${OPENTURNS_LIBRARY})
 
-install ( TARGETS otmixmod
-  RUNTIME DESTINATION bin
-  LIBRARY DESTINATION ${OTMIXMOD_LIBRARY_PATH}
-  ARCHIVE DESTINATION ${OTMIXMOD_LIBRARY_PATH}
+# Add targets to the build-tree export set
+export (TARGETS otmixmod FILE ${PROJECT_BINARY_DIR}/OTMixmod-Targets.cmake)
+
+# Install the export set for use with the install-tree
+install(EXPORT OTMixmod-Targets
+        DESTINATION "${OTMIXMOD_CONFIG_CMAKE_PATH}"
+        COMPONENT Development)
+
+install(TARGETS otmixmod
+        EXPORT  OTMixmod-Targets 
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION ${OTMIXMOD_LIBRARY_PATH}
+        ARCHIVE DESTINATION ${OTMIXMOD_LIBRARY_PATH}
 )
 

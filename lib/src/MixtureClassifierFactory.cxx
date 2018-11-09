@@ -19,7 +19,7 @@
  *
  */
 
-#include "MixtureClassifierFactory.hxx"
+#include "otmixmod/MixtureClassifierFactory.hxx"
 
 namespace OTMIXMOD
 {
@@ -28,14 +28,16 @@ CLASSNAMEINIT (MixtureClassifierFactory)
 
 /* Default constructor */
 MixtureClassifierFactory::MixtureClassifierFactory ()
-  : mixtureFactory_()
+  : OT::Object()
+  , mixtureFactory_()
 {
   // Nothing to do
 }
 
 /* Parameters constructor */
 MixtureClassifierFactory::MixtureClassifierFactory (const MixtureFactory & mixtureFactory)
-  : mixtureFactory_(mixtureFactory)
+  : OT::Object()
+  , mixtureFactory_(mixtureFactory)
 {
   // Nothing to do
 }

@@ -34,6 +34,6 @@ if ( PDFLATEX_COMPILER AND BIBTEX_COMPILER )
 #     COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_SOURCE_DIR}/src/Math_Notations.sty ${LATEX_OUTPUT_PATH}/Math_Notations.sty
 #     COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_BINARY_DIR}/src/GenericInformation.tex ${LATEX_OUTPUT_PATH}/GenericInformation.tex
 #   )     
-  install ( FILES ${LATEX_OUTPUT_PATH}/otmixmod_Documentation.pdf DESTINATION ${DOC_INSTALL_PATH}/pdf )
+install ( FILES ${LATEX_OUTPUT_PATH}/otmixmod_Documentation.pdf DESTINATION ${OTMIXMOD_DOC_PATH}/pdf )
 
 endif ()

@@ -32,7 +32,7 @@ namespace OTMIXMOD
 /**
  * @class MixtureClassifierFactory
  */
-class MixtureClassifierFactory
+class MixtureClassifierFactory : public OT::Object
 {
   CLASSNAME
 public:
