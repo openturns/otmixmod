@@ -10,11 +10,11 @@ OT::Implementation OTMIXMOD::MixtureFactory::build(const OT::Sample & sample, OT
 %ignore OTMIXMOD::MixtureFactory::build(const OT::Sample & sample) const;
 
 %{
-#include "MixtureFactory.hxx"
+#include "otmixmod/MixtureFactory.hxx"
 %}
 
 %template(SampleCollection)           OT::Collection<OT::Sample>;
 
-%include MixtureFactory.hxx
+%include otmixmod/MixtureFactory.hxx
 namespace OTMIXMOD { %extend MixtureFactory { MixtureFactory(const MixtureFactory & other) { return new OTMIXMOD::MixtureFactory(other); } }}
 

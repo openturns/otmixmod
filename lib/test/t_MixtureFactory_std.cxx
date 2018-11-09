@@ -22,7 +22,7 @@
 #include <cmath>
 #include <openturns/OT.hxx>
 #include <openturns/OTtestcode.hxx>
-#include "MixtureFactory.hxx"
+#include "otmixmod/MixtureFactory.hxx"
 #include <openturns/Normal.hxx>
 #include <openturns/Point.hxx>
 #include <openturns/Sample.hxx>

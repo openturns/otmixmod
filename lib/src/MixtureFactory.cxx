@@ -19,7 +19,7 @@
  *
  */
 
-#include "MixtureFactory.hxx"
+#include "otmixmod/MixtureFactory.hxx"
 
 #include <openturns/Normal.hxx>
 #include <openturns/Collection.hxx>

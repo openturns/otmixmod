@@ -18,7 +18,7 @@
  *  along with OTMixmod.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-#include "MixmodCovarianceModelImplementation.hxx"
+#include "otmixmod/MixmodCovarianceModelImplementation.hxx"
 
 #include <openturns/Exception.hxx>
 
