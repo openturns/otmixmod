@@ -41,33 +41,18 @@ CLASSNAMEINIT (MixtureFactory)
 /* Default constructor */
 MixtureFactory::MixtureFactory () :
   OT::DistributionFactoryImplementation(),
-  atomsNumber_ (0),
-  covarianceModel_ (Gaussian_pk_Lk_C())
+  atomsNumber_ (0)
 {
-  // Initialize any other class members here
-  // At last, allocate memory space if needed, but go to destructor to free it
+  setCovarianceModel("Gaussian_pk_Lk_C");
 }
 
 /* Parameters constructor */
 MixtureFactory::MixtureFactory (const OT::UnsignedInteger atomsNumber,
-                                const MixmodCovarianceModelImplementation & covarianceModel) :
-  OT::DistributionFactoryImplementation(),
-  atomsNumber_ (atomsNumber),
-  covarianceModel_ (covarianceModel)
+                                const OT::String covarianceModel)
+: OT::DistributionFactoryImplementation(),
+  atomsNumber_ (atomsNumber)
 {
-  // Initialize any other class members here
-  // At last, allocate memory space if needed, but go to destructor to free it
-}
-
-/* Parameters constructor */
-MixtureFactory::MixtureFactory (const OT::UnsignedInteger atomsNumber,
-                                const MixmodCovarianceModel & covarianceModel) :
-  OT::DistributionFactoryImplementation(),
-  atomsNumber_ (atomsNumber),
-  covarianceModel_ (covarianceModel)
-{
-  // Initialize any other class members here
-  // At last, allocate memory space if needed, but go to destructor to free it
+  setCovarianceModel(covarianceModel);
 }
 
 /* Virtual constructor */
@@ -126,7 +111,7 @@ OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample,
 
   // Prepare Mixmod for clustering
   XEMClusteringInput * clusteringInput(new XEMClusteringInput(nbCluster, dataDescription));
-  XEMModelType modelType(StringToXEMModelName(covarianceModel_.convertToMixmod()));
+  XEMModelType modelType(StringToXEMModelName(covarianceModel_));
   clusteringInput->setModelType(&modelType, 0);
   clusteringInput->finalize();
 
@@ -200,12 +185,13 @@ OT::UnsignedInteger MixtureFactory::getAtomsNumber () const
 }
 
 /* MixmodCovariance model accessors */
-void MixtureFactory::setCovarianceModel (const MixmodCovarianceModel & covarianceModel)
+void MixtureFactory::setCovarianceModel (const OT::String covarianceModel)
 {
+  (void) StringToXEMModelName(covarianceModel);
   covarianceModel_ = covarianceModel;
 }
 
-MixmodCovarianceModel MixtureFactory::getCovarianceModel () const
+OT::String MixtureFactory::getCovarianceModel () const
 {
   return covarianceModel_;
 }

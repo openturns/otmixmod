@@ -74,36 +74,6 @@ endmacro ()
 
 
 ot_add_python_module ( ${PACKAGE_NAME} ${PACKAGE_NAME}_module.i
-  MixmodCovarianceModelImplementation.i
-  MixmodCovarianceModel.i
-  Gaussian_pk_L_B.i
-  Gaussian_pk_L_Bk.i
-  Gaussian_pk_L_C.i
-  Gaussian_pk_L_Ck.i
-  Gaussian_pk_L_D_Ak_D.i
-  Gaussian_pk_L_Dk_A_Dk.i
-  Gaussian_pk_L_I.i
-  Gaussian_pk_Lk_B.i
-  Gaussian_pk_Lk_Bk.i
-  Gaussian_pk_Lk_C.i
-  Gaussian_pk_Lk_Ck.i
-  Gaussian_pk_Lk_D_Ak_D.i
-  Gaussian_pk_Lk_Dk_A_Dk.i
-  Gaussian_pk_Lk_I.i
-  Gaussian_p_L_B.i
-  Gaussian_p_L_Bk.i
-  Gaussian_p_L_C.i
-  Gaussian_p_L_Ck.i
-  Gaussian_p_L_D_Ak_D.i
-  Gaussian_p_L_Dk_A_Dk.i
-  Gaussian_p_L_I.i
-  Gaussian_p_Lk_B.i
-  Gaussian_p_Lk_Bk.i
-  Gaussian_p_Lk_C.i
-  Gaussian_p_Lk_Ck.i
-  Gaussian_p_Lk_D_Ak_D.i
-  Gaussian_p_Lk_Dk_A_Dk.i
-  Gaussian_p_Lk_I.i
   MixtureFactory.i
   MixtureClassifierFactory.i
   )

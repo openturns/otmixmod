@@ -72,7 +72,7 @@ int main (int argc, char *argv[])
     OT::UnsignedInteger kmax(10);
     OT::Bool stop(false);
 
-    Gaussian_pk_Lk_C covModel;
+    OT::String covModel = "Gaussian_pk_Lk_C";
     while (!stop)
     {
       fullprint << "Try with " << k << " cluster(s)" << std::endl;
