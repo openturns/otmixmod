@@ -33,7 +33,7 @@ bestError = SpecFunc.MaxScalar
 k = 2
 kmax = 10
 stop = False
-covModel = Gaussian_pk_Lk_C()
+covModel = 'Gaussian_pk_Lk_C'
 while not stop:
     print("Try with", k, "cluster(s)")
     logLike = Point(0)

@@ -21,10 +21,6 @@
 #ifndef OTMIXMOD_MIXTUREFACTORY_HXX
 #define OTMIXMOD_MIXTUREFACTORY_HXX
 
-#include "MixmodCovarianceModel.hxx"
-#include "MixmodCovarianceModelImplementation.hxx"
-#include "Gaussian_pk_Lk_C.hxx"
-
 #include <openturns/OTprivate.hxx>
 #include <openturns/DistributionFactoryImplementation.hxx>
 #include <openturns/Mixture.hxx>
@@ -49,10 +45,8 @@ public:
   MixtureFactory();
 
   /** Parameters constructor */
-  MixtureFactory(const OT::UnsignedInteger atomsNumber,
-                 const MixmodCovarianceModelImplementation & covarianceModel = Gaussian_pk_Lk_C());
-  MixtureFactory(const OT::UnsignedInteger atomsNumber,
-                 const MixmodCovarianceModel & covarianceModel);
+  explicit MixtureFactory(const OT::UnsignedInteger atomsNumber,
+                          const OT::String covarianceModel = "Gaussian_pk_Lk_C");
 
   /** Virtual constructor */
   virtual MixtureFactory * clone() const;
@@ -76,8 +70,8 @@ public:
   OT::UnsignedInteger getAtomsNumber() const;
 
   /** MixmodCovariance model accessors */
-  void setCovarianceModel(const MixmodCovarianceModel & covarianceModel);
-  MixmodCovarianceModel getCovarianceModel() const;
+  void setCovarianceModel(const OT::String covarianceModel);
+  OT::String getCovarianceModel() const;
 
   /** Partition a given sample into nbClusters according to the given labels */
   static SampleCollection BuildClusters(const OT::Sample & data,
@@ -91,7 +85,7 @@ public:
 private:
   /** The main parameter set of the factory */
   OT::UnsignedInteger atomsNumber_;
-  MixmodCovarianceModel covarianceModel_;
+  OT::String covarianceModel_;
 
   /** \todo Later :
    * MixModAlgorithm mixmodAlgorithm_;
