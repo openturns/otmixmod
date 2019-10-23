@@ -16,4 +16,4 @@ if sys.platform.startswith('win'):
 
 from .otmixmod import *
 
-__version__ = '0.8'
+__version__ = '0.9'

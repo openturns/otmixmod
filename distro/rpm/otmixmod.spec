@@ -15,7 +15,7 @@ FFLAGS="${FFLAGS:-%optflags}" ; export FFLAGS ; \
 -DBUILD_SHARED_LIBS:BOOL=ON
 
 Name:           otmixmod
-Version:        0.8
+Version:        0.9
 Release:        0%{?dist}
 Summary:        OpenTURNS module
 Group:          System Environment/Libraries
