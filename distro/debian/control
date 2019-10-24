@@ -1,11 +1,11 @@
 Source: otmixmod
 Section: science
-Priority: extra
+Priority: optional
 Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
 Uploaders: Christophe Prud'homme <prudhomm@debian.org>, Denis Barbier <barbier@debian.org>
-Build-Depends: debhelper (>= 8), quilt, cmake, gfortran, libopenturns-dev, python-openturns, python-dev, python3-openturns, python3-dev, swig (>= 2.0.9), docbook-to-man, texlive, texlive-latex-extra, poppler-utils
+Build-Depends: debhelper (>= 8), quilt, dh-python, cmake, gfortran, libopenturns-dev, python-openturns, python-dev, python3-openturns, python3-dev, swig (>= 2.0.9), docbook-to-man, texlive, texlive-latex-extra, poppler-utils
 Standards-Version: 3.9.6
-Homepage: http://trac.openturns.org/
+Homepage: http://www.openturns.org/
 X-Python-Version: current
 X-Python3-Version: current
 
@@ -15,4 +15,4 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, python-openturns
 Description: module otmixmod
  This is an OpenTURNS-based module
- Aside from pure awesomeness, it provides many useful features
+ It allows to use MixMod models in distributions
