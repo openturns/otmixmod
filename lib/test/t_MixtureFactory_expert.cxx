@@ -33,7 +33,7 @@
 
 using namespace OTMIXMOD;
 
-int main (int argc, char *argv[])
+int main (void)
 {
   TESTPREAMBLE;
   OT::OStream fullprint(std::cout);
