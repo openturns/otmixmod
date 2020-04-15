@@ -171,6 +171,39 @@ Var UserInstall
 
 
 ; set $Python_INSTALL_PATH to python dir found
+Function CheckPython
+  ClearErrors
+
+  ; user set the python path
+  ${If} $INSTDIR != "${Python_default_INSTALL_PATH}"
+    StrCpy $Python_INSTALL_PATH "$INSTDIR"
+  ${Else}
+    ; search the prog in the Windows registry
+    ReadRegStr $Python_INSTALL_PATH HKLM "Software\Python\PythonCore\${PYBASEVER}\InstallPath" ""
+    ${If} $Python_INSTALL_PATH == ""
+      !insertmacro PRINT "! Python not found in machine registry, try user registry."
+      ReadRegStr $Python_INSTALL_PATH HKCU "Software\Python\PythonCore\${PYBASEVER}\InstallPath" ""
+    ${EndIf}
+
+    ${If} $Python_INSTALL_PATH == ""
+      !insertmacro PRINT "! Python not found in registry, try default directory (${Python_default_INSTALL_PATH}) ."
+      StrCpy $Python_INSTALL_PATH "${Python_default_INSTALL_PATH}"
+    ${EndIf}
+  ${EndIf}
+
+  ; Check that the python exe is there
+  IfFileExists "$Python_INSTALL_PATH\python.exe" 0 python_not_found_error
+    !insertmacro PRINT "=> Python found here: $Python_INSTALL_PATH."
+  Goto python_not_found_error_end
+  python_not_found_error:
+    StrCpy $Python_INSTALL_PATH ""
+    !insertmacro PRINT "! Python not found !"
+  python_not_found_error_end:
+
+FunctionEnd
+
+
+; set $Python_INSTALL_PATH to python dir found
 Function CheckOpenturns
   ClearErrors
 
@@ -197,8 +230,8 @@ Function CheckOpenturns
       ${GetParent} $0 $Python_INSTALL_PATH
 
     ${Else}
-      !insertmacro PRINT "! OpenTURNS not found in registry, try default directory (${Python_default_INSTALL_PATH}) ."
-      StrCpy $Python_INSTALL_PATH "${Python_default_INSTALL_PATH}"
+      !insertmacro PRINT "! OpenTURNS not found in registry, try to find python directory"
+      Call CheckPython
     ${EndIf}
   ${EndIf}
 
@@ -234,8 +267,12 @@ Function .onInit
 
   ${If} $Python_INSTALL_PATH == ""
     MessageBox MB_OK|MB_ICONEXCLAMATION "Python ${PYBASEVER} installation directory not found!$\rEnter manually the Python installation directory." /SD IDOK
-    ; abort if silent install
+    ; abort if silent install and not FORCE flag
     IfSilent 0 end_abort
+    ${GetParameters} $R1
+    ClearErrors
+    ${GetOptions} $R1 '/FORCE' $R0
+    IfErrors 0 +2
     Abort
     end_abort:
   ${Else} 
@@ -277,6 +314,10 @@ FunctionEnd
 Section "!${MODULE_NAME} DLL & doc" SEC01
   SetOverwrite on
 
+  ; reread $INSTDIR in case user change it.
+  StrCpy $Python_INSTALL_PATH "$INSTDIR"
+  StrCpy $MODULE_INSTALL_PATH "$Python_INSTALL_PATH\Lib\site-packages\${MODULE_NAME_LOWERCASE}"
+
   SetDetailsPrint both
   ClearErrors
   CreateDirectory "$MODULE_INSTALL_PATH"
@@ -291,10 +332,7 @@ Section "!${MODULE_NAME} DLL & doc" SEC01
   !insertmacro PRINT "Install binary files in $MODULE_INSTALL_PATH."
   SetOutPath "$MODULE_INSTALL_PATH"
   File /r "${MODULE_PREFIX}\bin\*.*"
-  ; ! not working: __init__ will override  ot __init__
   File /r "${MODULE_PREFIX}\Lib\site-packages\${MODULE_NAME_LOWERCASE}\*.*"
-  SetOutPath "$MODULE_INSTALL_PATH\include\${MODULE_NAME_LOWERCASE}"
-  File /r "${MODULE_PREFIX}\include\${MODULE_NAME_LOWERCASE}\*.*"
 
   SetOutPath "$MODULE_INSTALL_PATH"
   File "README.txt"
@@ -311,6 +349,11 @@ Section "!${MODULE_NAME} DLL & doc" SEC01
   FileWrite $0 "Compiled for OpenTURNS ${OPENTURNS_VERSION}"
   FileClose $0
   versionfile_fail:
+
+  !insertmacro PRINT "Install dist-info"
+  CreateDirectory "$Python_INSTALL_PATH\Lib\site-packages\${MODULE_NAME_LOWERCASE}-${PRODUCT_VERSION}.dist-info"
+  SetOutPath "$Python_INSTALL_PATH\Lib\site-packages\${MODULE_NAME_LOWERCASE}-${PRODUCT_VERSION}.dist-info"
+  File /r "${MODULE_PREFIX}\Lib\site-packages\${MODULE_NAME_LOWERCASE}-${PRODUCT_VERSION}.dist-info\*"
 
   !insertmacro PRINT "Put OpenTURNS ${MODULE_NAME} in windows registry."
   WriteRegStr ${PRODUCT_INST_ROOT_KEY} ${PRODUCT_DIR_REGKEY} "${MODULE_NAME}" "${PRODUCT_VERSION}"
