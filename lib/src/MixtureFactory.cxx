@@ -163,11 +163,6 @@ OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample,
   return OT::Mixture(coll);
 }
 
-OT::Distribution MixtureFactory::build(const OT::DistributionFactoryImplementation::PointCollection & parametersCollection) const
-{
-  throw OT::NotYetImplementedException(HERE);
-}
-
 OT::Distribution MixtureFactory::build() const
 {
   return OT::Mixture(OT::Mixture::DistributionCollection(1, OT::Normal())).clone();

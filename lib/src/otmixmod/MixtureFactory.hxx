@@ -49,16 +49,15 @@ public:
                           const OT::String covarianceModel = "Gaussian_pk_Lk_C");
 
   /** Virtual constructor */
-  virtual MixtureFactory * clone() const;
+  MixtureFactory * clone() const override;
 
   /** Here is the interface that all derived class must implement */
   using OT::DistributionFactoryImplementation::build;
-  OT::Distribution build(const OT::Sample & sample) const;
+  OT::Distribution build(const OT::Sample & sample) const override;
   OT::Distribution build(const OT::Sample & sample,
                          OT::Indices & labels,
                          OT::Point & BICLogLikelihood) const;
-  OT::Distribution build(const OT::DistributionFactoryImplementation::PointCollection & parameters) const;
-  OT::Distribution build() const;
+  OT::Distribution build() const override;
   OT::Mixture buildAsMixture(const OT::Sample & sample) const;
   OT::Mixture buildAsMixture(const OT::Sample & sample,
                              OT::Indices & labels,
