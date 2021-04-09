@@ -1,18 +1,8 @@
-language: cpp
+language: generic
 
-install:
-  - curl http://ubuntu.openturns.org/openturns.org-repo.key | sudo apt-key add -
-  - echo deb http://ubuntu.openturns.org xenial main | sudo tee /etc/apt/sources.list.d/openturns.list
-  - sudo apt-get update
-  - sudo apt-get -y install libopenturns-dev python3-openturns python3-dev cmake swig texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra python3-matplotlib python3-pip python3-setuptools
-  - sudo rm -r /opt/python/*
-  - pip3 install "sphinx<3" numpydoc "matplotlib<3" "numpy<1.19" --user --upgrade
+services:
+  - docker
 
 script:
-  - cmake -DCMAKE_INSTALL_PREFIX=~/.local
-    -DCMAKE_CXX_FLAGS="-Wall -Wextra"
-    -DPYTHON_EXECUTABLE=/usr/bin/python3
-    -DSPHINX_EXECUTABLE=~/.local/bin/sphinx-build
-    .
-  - make install -j2 && make tests -j2 && ctest -j2 --output-on-failure --timeout 100
-
+  - docker pull openturns/archlinux-module
+  - docker run --rm -e MAKEFLAGS='-j2' -v `pwd`:/io openturns/archlinux-module /io/run_docker_build.sh
