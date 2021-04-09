@@ -337,9 +337,9 @@ Section "!${MODULE_NAME} DLL & doc" SEC01
   SetOutPath "$MODULE_INSTALL_PATH"
   File "README.txt"
 
-  !insertmacro PRINT "Install doc example in $MODULE_INSTALL_PATH\doc\pdf."
-  SetOutPath "$MODULE_INSTALL_PATH\doc\pdf"
-  File "${MODULE_PREFIX}\share\doc\${MODULE_NAME_LOWERCASE}\pdf\${MODULE_NAME}_Documentation.pdf"
+  ;!insertmacro PRINT "Install doc example in $MODULE_INSTALL_PATH\doc\pdf."
+  ;SetOutPath "$MODULE_INSTALL_PATH\doc\pdf"
+  ;File "${MODULE_PREFIX}\share\doc\${MODULE_NAME_LOWERCASE}\pdf\${MODULE_NAME}_Documentation.pdf"
 
   ; create a version file
   ClearErrors
@@ -374,7 +374,7 @@ Section -AdditionalIcons
 
   CreateDirectory "$SMPROGRAMS\OpenTURNS\${MODULE_NAME}"
   CreateShortCut "$SMPROGRAMS\OpenTURNS\${MODULE_NAME}\README.lnk" "$MODULE_INSTALL_PATH\README.txt" "" "" 0
-  CreateShortCut "$SMPROGRAMS\OpenTURNS\${MODULE_NAME}\Documentation.lnk" "$MODULE_INSTALL_PATH\doc\pdf\${MODULE_NAME}_Documentation.pdf" "" "" 1
+  ;CreateShortCut "$SMPROGRAMS\OpenTURNS\${MODULE_NAME}\Documentation.lnk" "$MODULE_INSTALL_PATH\doc\pdf\${MODULE_NAME}_Documentation.pdf" "" "" 1
   CreateShortCut "$SMPROGRAMS\OpenTURNS\${MODULE_NAME}\Uninstall.lnk" "$MODULE_INSTALL_PATH\${UNINST_EXE}" "" "" 2
 SectionEnd
 
