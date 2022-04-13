@@ -20,14 +20,13 @@ FFLAGS="${FFLAGS:-%optflags}" ; export FFLAGS ; \
 -DBUILD_SHARED_LIBS:BOOL=ON
 
 Name:           otmixmod
-Version:        0.12
+Version:        0.13
 Release:        0%{?dist}
 Summary:        OpenTURNS module
 Group:          System Environment/Libraries
 License:        GPLv3+
 URL:            http://www.openturns.org/
 Source0:        http://downloads.sourceforge.net/openturns-modules/otmixmod/otmixmod-%{version}.tar.bz2
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  gcc-c++, cmake, swig
 BuildRequires:  openturns-devel
 BuildRequires:  python3-openturns
@@ -66,20 +65,14 @@ Python textual interface to otmixmod uncertainty library
 %build
 %cmake -DINSTALL_DESTDIR:PATH=%{buildroot} \
        -DCMAKE_SKIP_INSTALL_RPATH:BOOL=ON \
-       -DPYTHON_EXECUTABLE=%{__python} \
        -DBUILD_DOC=OFF .
 make %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
 make install DESTDIR=%{buildroot}
 
 %check
-make tests %{?_smp_mflags}
-LD_LIBRARY_PATH=%{buildroot}%{_libdir} ctest %{?_smp_mflags} --output-on-failure
-
-%clean
-rm -rf %{buildroot}
+LD_LIBRARY_PATH=%{buildroot}%{_libdir} ctest %{?_smp_mflags} -R pyinstallcheck --output-on-failure --schedule-random
 
 %post -n libotmixmod0 -p /sbin/ldconfig 
 %postun -n libotmixmod0 -p /sbin/ldconfig 
