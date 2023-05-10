@@ -21,6 +21,7 @@ endif ()
 set_target_properties ( otmixmod PROPERTIES VERSION ${LIB_VERSION} )
 set_target_properties ( otmixmod PROPERTIES SOVERSION ${LIB_SOVERSION} )
 target_link_libraries (otmixmod ${OPENTURNS_LIBRARY})
+set_target_properties (otmixmod PROPERTIES UNITY_BUILD OFF)
 
 # Add targets to the build-tree export set
 export (TARGETS otmixmod FILE ${PROJECT_BINARY_DIR}/OTMixmod-Targets.cmake)
