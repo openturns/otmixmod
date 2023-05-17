@@ -1,53 +1,50 @@
-from openturns import *
-from otmixmod import *
+#!/usr/bin/env python
+
+import openturns as ot
+import otmixmod
 
 size = 200
 dim = 1
 
 # To extract the input part of the mixture
-inputIndices = Indices(dim)
-inputIndices.fill(0)
+inputIndices = [0]
 # To extract the output part of the mixture
-outputIndices = Indices(dim)
-outputIndices.fill(dim)
+outputIndices = [1]
 
-model = SymbolicFunction(
+model = ot.SymbolicFunction(
     "x", "(1.0 + sign(x)) * cos(x) - (sign(x) - 1) * sin(2*x)")
-dataX = Uniform().getSample(size)
+dataX = ot.Uniform().getSample(size)
 print('dataX=', dataX)
 dataX = dataX.sort()
 dataY = model(dataX)
 # For validation
-dataXValid = Uniform().getSample(divmod(size, 5)[0])
+dataXValid = ot.Uniform().getSample(size // 5)
 dataYValid = model(dataXValid)
 
-data = Sample(size, 2)
-for i in range(size):
-    data[i, 0] = dataX[i, 0]
-    data[i, 1] = dataY[i, 0]
+data = dataX
+data.stack(dataY)
+
 
 bestExpert = 0
 bestCluster = 0
-bestError = SpecFunc.MaxScalar
+bestError = ot.SpecFunc.MaxScalar
 k = 2
 kmax = 10
 stop = False
 covModel = 'Gaussian_pk_Lk_C'
 while not stop:
     print("Try with", k, "cluster(s)")
-    logLike = Point(0)
-    labels = Indices(0)
 
     # Classify data
-    mixture, labels, logLike = MixtureFactory(k, covModel).buildAsMixture(data)
+    mixture, labels, logLike = otmixmod.MixtureFactory(k, covModel).buildAsMixture(data)
 
     # Build the clusters
     print("Build the clusters")
-    clusters = MixtureFactory.BuildClusters(data, labels, k)
+    clusters = otmixmod.MixtureFactory.BuildClusters(data, labels, k)
 
     # Build the local meta-models
     print("Build the local experts")
-    metaModels = Basis()
+    metaModels = ot.Basis()
     for i in range(k):
         print("Expert ", i)
         # Extract the distribution of the current cluster
@@ -55,25 +52,25 @@ while not stop:
             i].getMarginal(inputIndices)
         # Build the local meta model using PCE
         # We use a projection strategy
-        projection = ProjectionStrategy(LeastSquaresStrategy(distribution))
+        projection = ot.ProjectionStrategy(ot.LeastSquaresStrategy(distribution))
         # We use an Hermite chaos expansion
-        basis = OrthogonalProductPolynomialFactory(
-            PolynomialFamilyCollection(dim, OrthogonalUniVariatePolynomialFamily(HermiteFactory())))
+        basis = ot.OrthogonalProductPolynomialFactory(
+            ot.PolynomialFamilyCollection(dim, ot.HermiteFactory()))
         # FixedStrategy
         if k == 1:
             degree = 16
         else:
             degree = 2
-        adaptive = AdaptiveStrategy(
-            OrthogonalBasis(basis), EnumerateFunction().getStrataCumulatedCardinal(degree))
-        algo = FunctionalChaosAlgorithm(clusters[i].getMarginal(inputIndices), clusters[
+        adaptive = ot.AdaptiveStrategy(
+            ot.OrthogonalBasis(basis), ot.EnumerateFunction().getStrataCumulatedCardinal(degree))
+        algo = ot.FunctionalChaosAlgorithm(clusters[i].getMarginal(inputIndices), clusters[
                                         i].getMarginal(outputIndices), distribution, adaptive, projection)
         algo.run()
         metaModels.add(algo.getResult().getMetaModel())
 
     print("Build the expert mixture")
-    classifier = MixtureClassifier(mixture)
-    expert = ExpertMixture(metaModels, classifier)
+    classifier = ot.MixtureClassifier(mixture)
+    expert = ot.ExpertMixture(metaModels, classifier)
     print("Value at -1=%.6f" % expert([-1.0])[0])
     print("Value at  0=%.6f" % expert([0.0])[0])
     print("Value at  1=%.6f" % expert([1.0])[0])
