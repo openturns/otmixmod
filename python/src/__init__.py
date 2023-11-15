@@ -16,4 +16,4 @@ import openturns as _ot
 
 from .otmixmod import *
 
-__version__ = '0.14'
+__version__ = '0.15'
