@@ -13,8 +13,9 @@ OT::Implementation OTMIXMOD::MixtureFactory::build(const OT::Sample & sample, OT
 #include "otmixmod/MixtureFactory.hxx"
 %}
 
-%template(SampleCollection)           OT::Collection<OT::Sample>;
+%include MixtureFactory_doc.i 
+
+%copyctor OTMIXMOD::MixtureFactory;
 
 %include otmixmod/MixtureFactory.hxx
-namespace OTMIXMOD { %extend MixtureFactory { MixtureFactory(const MixtureFactory & other) { return new OTMIXMOD::MixtureFactory(other); } }}
 

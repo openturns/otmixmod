@@ -78,13 +78,14 @@ public:
                                         const OT::UnsignedInteger nbClusters);
 
   /** Mixmod PRNG state accessor */
-  void setState(const OT::UnsignedInteger yState,
-                const OT::UnsignedInteger zState);
+  void setSeed(const OT::SignedInteger seed);
 
 private:
   /** The main parameter set of the factory */
-  OT::UnsignedInteger atomsNumber_;
+  OT::UnsignedInteger atomsNumber_ = 0;
   OT::String covarianceModel_;
+
+  OT::SignedInteger seed_ = 0;
 
   /** \todo Later :
    * MixModAlgorithm mixmodAlgorithm_;

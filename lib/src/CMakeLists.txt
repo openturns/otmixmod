@@ -1,12 +1,7 @@
-
-add_subdirectory ( mixmod )
-
 ot_add_current_dir_to_include_dirs ()
 
-ot_add_source_file ( MixtureClassifierFactory.cxx )
 ot_add_source_file ( MixtureFactory.cxx )
 
-ot_install_header_file ( MixtureClassifierFactory.hxx )
 ot_install_header_file ( MixtureFactory.hxx )
 
 include_directories ( ${INTERNAL_INCLUDE_DIRS} )
@@ -21,6 +16,10 @@ endif ()
 set_target_properties ( otmixmod PROPERTIES VERSION ${LIB_VERSION} )
 set_target_properties ( otmixmod PROPERTIES SOVERSION ${LIB_SOVERSION} )
 target_link_libraries (otmixmod ${OPENTURNS_LIBRARY})
+
+target_include_directories(otmixmod PRIVATE ${MIXMOD_INCLUDE_DIRS})
+target_link_libraries (otmixmod ${MIXMOD_LIBRARIES})
+
 set_target_properties (otmixmod PROPERTIES UNITY_BUILD OFF)
 
 # Add targets to the build-tree export set

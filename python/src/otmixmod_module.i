@@ -19,4 +19,3 @@
 
 // The new classes
 %include MixtureFactory.i
-%include MixtureClassifierFactory.i

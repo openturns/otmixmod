@@ -254,13 +254,13 @@ Expert  3
 Expert  4
 Build the expert mixture
 Value at -1=-1.819036
-Value at  0=2.000122
-Value at  1=1.080262
+Value at  0=2.000642
+Value at  1=1.079446
 Validation
 expert input dimension= 1
 validation dimension= 1
-k= 5 error=1.1468e-04
-5 cluster(s) done, best= 5 error=1.1468e-04
+k= 5 error=3.8492e-05
+5 cluster(s) done, best= 5 error=3.8492e-05
 Try with 6 cluster(s)
 Build the clusters
 Build the local experts
@@ -272,13 +272,13 @@ Expert  4
 Expert  5
 Build the expert mixture
 Value at -1=-1.819036
-Value at  0=2.000109
-Value at  1=1.080262
+Value at  0=2.000058
+Value at  1=1.079446
 Validation
 expert input dimension= 1
 validation dimension= 1
-k= 6 error=3.4774e-05
-6 cluster(s) done, best= 6 error=3.4774e-05
+k= 6 error=3.6081e-05
+6 cluster(s) done, best= 6 error=3.6081e-05
 Try with 7 cluster(s)
 Build the clusters
 Build the local experts
@@ -290,14 +290,14 @@ Expert  4
 Expert  5
 Expert  6
 Build the expert mixture
-Value at -1=-1.817981
+Value at -1=-1.819036
 Value at  0=2.000122
 Value at  1=1.080262
 Validation
 expert input dimension= 1
 validation dimension= 1
-k= 7 error=8.2664e-06
-7 cluster(s) done, best= 7 error=8.2664e-06
+k= 7 error=3.2377e-05
+7 cluster(s) done, best= 7 error=3.2377e-05
 Try with 8 cluster(s)
 Build the clusters
 Build the local experts
@@ -311,13 +311,13 @@ Expert  6
 Expert  7
 Build the expert mixture
 Value at -1=-1.817981
-Value at  0=2.000109
+Value at  0=2.000122
 Value at  1=1.080262
 Validation
 expert input dimension= 1
 validation dimension= 1
-k= 8 error=1.8964e-06
-8 cluster(s) done, best= 8 error=1.8964e-06
+k= 8 error=9.6684e-06
+8 cluster(s) done, best= 8 error=9.6684e-06
 Try with 9 cluster(s)
 Build the clusters
 Build the local experts
@@ -332,13 +332,13 @@ Expert  7
 Expert  8
 Build the expert mixture
 Value at -1=-1.817981
-Value at  0=2.000076
-Value at  1=1.080305
+Value at  0=2.000047
+Value at  1=1.080466
 Validation
 expert input dimension= 1
 validation dimension= 1
-k= 9 error=8.8941e-06
-9 cluster(s) done, best= 8 error=1.8964e-06
+k= 9 error=8.1529e-06
+9 cluster(s) done, best= 9 error=8.1529e-06
 Try with 10 cluster(s)
 Build the clusters
 Build the local experts
@@ -354,10 +354,10 @@ Expert  8
 Expert  9
 Build the expert mixture
 Value at -1=-1.817981
-Value at  0=2.000058
-Value at  1=1.080466
+Value at  0=2.000122
+Value at  1=1.080262
 Validation
 expert input dimension= 1
 validation dimension= 1
-k= 10 error=9.5486e-06
-10 cluster(s) done, best= 8 error=1.8964e-06
+k= 10 error=6.7404e-07
+10 cluster(s) done, best= 10 error=6.7404e-07

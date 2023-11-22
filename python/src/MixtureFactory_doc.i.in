@@ -1,0 +1,20 @@
+%feature("docstring") OTMIXMOD::MixtureFactory
+"Mixture inference."
+
+// ----------------------------------------------------------------------------
+
+%feature("docstring") OTMIXMOD::MixtureFactory::buildAsMixture
+"Mixture inference."
+
+// ----------------------------------------------------------------------------
+
+%feature("docstring") OTMIXMOD::MixtureFactory::setSeed
+"Mixmod RNG seed accessor
+
+Parameters
+----------
+seed : int
+    Seed used to initialize the Mixmod RNG seed before the learning step.
+    A negative seed will randomly initialize the RNG.
+    The default value is 0.
+"

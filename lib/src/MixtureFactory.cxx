@@ -27,11 +27,17 @@
 #include <openturns/Path.hxx>
 #include <openturns/Os.hxx>
 
-#include "XEMGaussianData.h"
-#include "XEMClusteringInput.h"
-#include "XEMClusteringOutput.h"
-#include "XEMClusteringMain.h"
-#include "XEMGaussianEDDAParameter.h"
+#include <mixmod/Clustering/ClusteringInput.h>
+#include <mixmod/Clustering/ClusteringOutput.h>
+#include <mixmod/Clustering/ClusteringMain.h>
+#include <mixmod/Clustering/ClusteringModelOutput.h>
+#include <mixmod/Kernel/IO/GaussianData.h>
+#include <mixmod/Kernel/Parameter/GaussianEDDAParameter.h>
+#include <mixmod/Kernel/IO/ParameterDescription.h>
+#include <mixmod/Kernel/IO/LabelDescription.h>
+#include <mixmod/Kernel/IO/Label.h>
+#include <mixmod/Kernel/Model/Model.h>
+#include <mixmod/Matrix/Matrix.h>
 
 namespace OTMIXMOD
 {
@@ -100,33 +106,33 @@ OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample,
     for (OT::UnsignedInteger j = 0; j < dimension; ++j)
       matrix[i][j] = sample[i][j];
 
-  XEMGaussianData * gaussianData = new XEMGaussianData(sampleSize, dimension, matrix);
+  XEM::GaussianData * gaussianData = new XEM::GaussianData(sampleSize, dimension, matrix);
   for (OT::UnsignedInteger i = 0; i < sampleSize; ++i) delete [] matrix[i];
   delete [] matrix;
 
   // Create a Mixmod description
-  XEMDataDescription dataDescription(gaussianData);
+  XEM::DataDescription dataDescription(gaussianData);
   vector<int64_t> nbCluster;
   nbCluster.push_back(atomsNumber_);
 
   // Prepare Mixmod for clustering
-  XEMClusteringInput * clusteringInput(new XEMClusteringInput(nbCluster, dataDescription));
-  XEMModelType modelType(StringToXEMModelName(covarianceModel_));
+  XEM::ClusteringInput * clusteringInput(new XEM::ClusteringInput(nbCluster, dataDescription));
+  XEM::ModelType modelType(XEM::StringToModelName(covarianceModel_));
   clusteringInput->setModelType(&modelType, 0);
   clusteringInput->finalize();
 
   // Do the computation
-  XEMClusteringMain clusteringMain(clusteringInput);
-  clusteringMain.run();
+  XEM::ClusteringMain clusteringMain(clusteringInput);
+  clusteringMain.run(seed_);
 
   // Extract the results
-  XEMClusteringOutput * clusteringOutput(clusteringMain.getClusteringOutput());
+  XEM::ClusteringOutput * clusteringOutput(clusteringMain.getOutput());
 
-  XEMClusteringModelOutput * clusteringModelOutput(clusteringOutput->getClusteringModelOutput(0));
-  XEMParameterDescription * paramDescription(clusteringModelOutput->getParameterDescription());
+  XEM::ClusteringModelOutput * clusteringModelOutput(clusteringOutput->getClusteringModelOutput(0));
+  XEM::ParameterDescription * paramDescription(clusteringModelOutput->getParameterDescription());
   if (paramDescription == NULL) throw OT::InternalException(HERE) << "Error: Mixmod is unable to estimate a mixture with the given data and the current number of atoms. You may have repeated points in your data, a situation not well handled by Mixmod.";
-  XEMParameter * paramTmp(paramDescription->getParameter());
-  XEMGaussianEDDAParameter * param = dynamic_cast< XEMGaussianEDDAParameter * >(paramTmp);
+  XEM::Parameter * paramTmp(paramDescription->getParameter());
+  XEM::GaussianEDDAParameter *param = dynamic_cast< XEM::GaussianEDDAParameter * >(paramTmp);
 
   OT::Mixture::DistributionCollection coll(0);
   for (OT::UnsignedInteger i = 0; i < atomsNumber_; ++i)
@@ -149,17 +155,19 @@ OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample,
     atom.setWeight(w);
     coll.add(atom);
   }
-  XEMLabelDescription * labelDescription(clusteringModelOutput->getLabelDescription());
+  XEM::LabelDescription * labelDescription(clusteringModelOutput->getLabelDescription());
   labels = OT::Indices(sampleSize);
   // Labels run from 1 to nbAtoms, we want indices in {0,\dots,nbAtoms-1}
   // getTabLabel() returns a copy of original vector, it must be destroyed explicitly
   int64_t * tabLabels = labelDescription->getLabel()->getTabLabel();
   for (OT::UnsignedInteger i = 0; i < sampleSize; ++i) labels[i] = tabLabels[i] - 1;
   delete [] tabLabels;
+
   BICLogLikelihood = OT::Point(3);
-  BICLogLikelihood[0] = param->getModel()->getLogLikelihood(false);
-  BICLogLikelihood[1] = param->getModel()->getCompletedLogLikelihood();
-  BICLogLikelihood[2] = param->getModel()->getEntropy();
+  // old version: BICLogLikelihood[0] = param->getModel()->getLogLikelihood(false);
+  BICLogLikelihood[0] = clusteringModelOutput->getLikelihood();
+  // old version: BICLogLikelihood[1] = param->getModel()->getCompletedLogLikelihood();
+  // old version: BICLogLikelihood[2] = param->getModel()->getEntropy();
   return OT::Mixture(coll);
 }
 
@@ -182,7 +190,7 @@ OT::UnsignedInteger MixtureFactory::getAtomsNumber () const
 /* MixmodCovariance model accessors */
 void MixtureFactory::setCovarianceModel (const OT::String covarianceModel)
 {
-  (void) StringToXEMModelName(covarianceModel);
+  (void) XEM::StringToModelName(covarianceModel);
   covarianceModel_ = covarianceModel;
 }
 
@@ -209,10 +217,9 @@ MixtureFactory::SampleCollection MixtureFactory::BuildClusters(const OT::Sample 
 }
 
 /* Mixmod PRNG state accessor */
-void MixtureFactory::setState(const OT::UnsignedInteger yState,
-                              const OT::UnsignedInteger zState)
+void MixtureFactory::setSeed(const OT::SignedInteger seed)
 {
-  setSeed(yState, zState);
+  seed_ = seed;
 }
 
 } // namespace OTMIXMOD

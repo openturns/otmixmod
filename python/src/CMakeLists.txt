@@ -77,8 +77,7 @@ endmacro ()
 
 
 ot_add_python_module ( ${PACKAGE_NAME} ${PACKAGE_NAME}_module.i
-  MixtureFactory.i
-  MixtureClassifierFactory.i
+  MixtureFactory.i MixtureFactory_doc.i.in
   )
 
 
