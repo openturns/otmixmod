@@ -1,8 +1,0 @@
-language: generic
-
-services:
-  - docker
-
-script:
-  - docker pull openturns/archlinux-module
-  - docker run --rm -e MAKEFLAGS='-j2' -v `pwd`:/io openturns/archlinux-module /io/run_docker_build.sh
