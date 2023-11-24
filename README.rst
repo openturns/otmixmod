@@ -1,17 +1,17 @@
-.. image:: https://travis-ci.org/openturns/otmixmod.svg?branch=master
-    :target: https://travis-ci.org/openturns/otmixmod
+.. image:: https://github.com/openturns/otmixmod/actions/workflows/build.yml/badge.svg?branch=master
+    :target: https://github.com/openturns/otmixmod/actions/workflows/build.yml
 
 OTMixmod Module
 ===============
 
-OTMixmod is a module for OpenTURNS
+OTMixmod is a module for Mixture inference using the `Mixmod <https://github.com/mixmod>`_ library.
 
 More information can found at http://www.openturns.org
 
 
 Installation
 ============
-Please see the http://trac.openturns.org/wiki/Modules
+Please see the http://openturns.github.io/openturns/latest/install.html
 for instructions on installing OpenTURNS modules on various platforms from binaries or sources.
 
 -- The OpenTURNS team
