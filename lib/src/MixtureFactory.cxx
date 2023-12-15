@@ -163,11 +163,10 @@ OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample,
   for (OT::UnsignedInteger i = 0; i < sampleSize; ++i) labels[i] = tabLabels[i] - 1;
   delete [] tabLabels;
 
-  BICLogLikelihood = OT::Point(3);
-  // old version: BICLogLikelihood[0] = param->getModel()->getLogLikelihood(false);
+  BICLogLikelihood.resize(3);
   BICLogLikelihood[0] = clusteringModelOutput->getLikelihood();
-  // old version: BICLogLikelihood[1] = param->getModel()->getCompletedLogLikelihood();
-  // old version: BICLogLikelihood[2] = param->getModel()->getEntropy();
+  BICLogLikelihood[1] = clusteringModelOutput->getCompletedLikelihood();
+  BICLogLikelihood[2] = clusteringModelOutput->getEntropy();
   return OT::Mixture(coll);
 }
 
