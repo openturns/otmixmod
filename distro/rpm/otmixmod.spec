@@ -31,6 +31,7 @@ BuildRequires:  gcc-c++, cmake, swig
 BuildRequires:  openturns-devel
 BuildRequires:  python3-openturns
 BuildRequires:  python3-devel
+BuildRequires:  mixmod-devel
 Requires:       libotmixmod0
 
 %description

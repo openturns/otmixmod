@@ -9,7 +9,8 @@ Build-Depends: debhelper-compat (= 12),
                libopenturns-dev,
                python3-openturns,
                python3-dev,
-               swig
+               swig,
+               libmixmod-dev
 Standards-Version: 4.6.0
 Homepage: http://www.openturns.org/
 Rules-Requires-Root: no
@@ -17,7 +18,7 @@ Rules-Requires-Root: no
 Package: otmixmod
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, python3-openturns
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-openturns, libmixmod
 Description: module otmixmod
  This is an OpenTURNS-based module
  It allows to use MixMod models in distributions
