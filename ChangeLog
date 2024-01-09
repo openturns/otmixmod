@@ -1,4 +1,4 @@
-= 0.16 release (in-progress)
+= 0.16 release (2024-01-09)
 
 - Depend on mixmod library (https://github.com/mixmod)
 - Removed MixtureClassifierFactory
