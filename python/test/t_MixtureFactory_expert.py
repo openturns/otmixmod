@@ -63,8 +63,8 @@ while not stop:
             degree = 2
         adaptive = ot.AdaptiveStrategy(
             ot.OrthogonalBasis(basis), ot.EnumerateFunction().getStrataCumulatedCardinal(degree))
-        algo = ot.FunctionalChaosAlgorithm(clusters[i].getMarginal(inputIndices), clusters[
-                                        i].getMarginal(outputIndices), distribution, adaptive, projection)
+        algo = ot.FunctionalChaosAlgorithm(clusters[i].getMarginal(inputIndices),
+                                           clusters[i].getMarginal(outputIndices), distribution, adaptive, projection)
         algo.run()
         metaModels.add(algo.getResult().getMetaModel())
 
