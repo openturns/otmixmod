@@ -1,8 +1,8 @@
 cmake_minimum_required (VERSION 3.13)
 
-option ( BUILD_PYTHON                 "Build the python module for the library"                               ON )
-option ( BUILD_DOC                    "Build the documentation"                                               ON )
-option ( BUILD_SHARED_LIBS            "Build shared libraries"                                                ON )
+option (BUILD_PYTHON                 "Build the python module for the library"                               ON)
+option (USE_SPHINX                   "Use sphinx for documentation"                                          ON)
+option (BUILD_SHARED_LIBS            "Build shared libraries"                                                ON)
 
 # By default, build in Release mode. Must appear before project() command
 set( CMAKE_BUILD_TYPE Release CACHE STRING "Build type")
@@ -67,7 +67,8 @@ if (BUILD_PYTHON)
   endif ()
 
   if (Python_FOUND)
-	  #include (FindPythonModule)
+    include (FindPythonModule)
+    find_python_module (matplotlib)
     if (NOT TARGET Python::Module)
       include (TargetLinkLibrariesWithDynamicLookup)
     endif ()
@@ -75,11 +76,12 @@ if (BUILD_PYTHON)
     if (USE_SPHINX)
       find_program (SPHINX_EXECUTABLE NAMES sphinx-build DOC "Sphinx Documentation Builder (sphinx-doc.org)")
       find_python_module (numpydoc)
-      if (SPHINX_EXECUTABLE AND NUMPYDOC_FOUND)
-        find_python_module (sphinx 1.1)
+      find_python_module (sphinx_gallery)
+      if (SPHINX_EXECUTABLE AND NUMPYDOC_FOUND AND SPHINX_GALLERY_FOUND AND MATPLOTLIB_FOUND)
+        find_python_module (sphinx)
       endif ()
       if (NOT SPHINX_FOUND)
-        message (STATUS "Disabling documentation (need sphinx/pandoc/numpydoc)")
+        message (STATUS "Disabling documentation (need sphinx/pandoc/numpydoc/sphinx-gallery/matplotlib)")
       endif ()
     endif ()
 
@@ -123,11 +125,11 @@ macro (ot_install_swig_file FILENAME)
   install (FILES ${FILENAME} DESTINATION ${OTMIXMOD_SWIG_INCLUDE_DIRS})
 endmacro ()
 
-set ( INTERNAL_INCLUDE_DIRS "" CACHE INTERNAL "List of directories with header files needed for build" )
-macro ( ot_add_current_dir_to_include_dirs )
-  set ( inc_dirs ${INTERNAL_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} )
-  set ( INTERNAL_INCLUDE_DIRS ${inc_dirs} CACHE INTERNAL "List of directories with header files needed for build" )
-endmacro ( ot_add_current_dir_to_include_dirs )
+set (INTERNAL_INCLUDE_DIRS "" CACHE INTERNAL "List of directories with header files needed for build")
+macro (ot_add_current_dir_to_include_dirs)
+  set (inc_dirs ${INTERNAL_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
+  set (INTERNAL_INCLUDE_DIRS ${inc_dirs} CACHE INTERNAL "List of directories with header files needed for build")
+endmacro ()
 
 
 set ( CPACK_PACKAGE_NAME          ${PACKAGE_NAME} )
@@ -162,9 +164,6 @@ if (Python_FOUND AND SWIG_FOUND)
   add_dependencies (installcheck pyinstallcheck)
 endif ()
 
-if (BUILD_DOC)
-  add_subdirectory (doc)
-endif ()
 
 # uninstall target
 configure_file (
