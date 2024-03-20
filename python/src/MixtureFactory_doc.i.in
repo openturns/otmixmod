@@ -1,15 +1,66 @@
 %feature("docstring") OTMIXMOD::MixtureFactory
-"Mixture inference."
+"Mixture inference.
+
+Parameters
+----------
+atomsNumber : int
+    The number of atoms
+covarianceModel : str, optional
+    The covariance model.
+    Default is 'Gaussian_pk_Lk_C'
+
+    Other possible values include:
+
+    - Gaussian_p_L_I
+    - Gaussian_p_Lk_I
+    - Gaussian_p_L_B
+    - Gaussian_p_Lk_B
+    - Gaussian_p_L_Bk
+    - Gaussian_p_Lk_Bk
+    - Gaussian_p_L_C
+    - Gaussian_p_Lk_C
+    - Gaussian_p_L_D_Ak_D
+    - Gaussian_p_Lk D_Ak_D
+    - Gaussian_p_L_Dk_A_Dk
+    - Gaussian_p_Lk_Dk_A_Dk
+    - Gaussian_p_L_Ck
+    - Gaussian_p_Lk_Ck
+    - Gaussian_pk_L_I
+    - Gaussian_pk_Lk_I
+    - Gaussian_pk_L_B
+    - Gaussian_pk_Lk_B
+    - Gaussian_pk_L_Bk
+    - Gaussian_pk_Lk_Bk
+    - Gaussian_pk_L_C
+    - Gaussian_pk_Lk_C
+    - Gaussian_pk_L_D_Ak_D
+    - Gaussian_pk_Lk D_Ak_D
+    - Gaussian_pk_L_Dk_A_Dk
+    - Gaussian_pk_Lk_Dk_A_Dk
+    - Gaussian_pk_L_Ck
+    - Gaussian_pk_Lk_Ck
+"
 
 // ----------------------------------------------------------------------------
 
 %feature("docstring") OTMIXMOD::MixtureFactory::buildAsMixture
-"Mixture inference."
+"Mixture inference.
+
+Parameters
+----------
+sample : :class:`openturns.Sample`
+    Sample
+
+Returns
+-------
+mixture : :class:`openturns.Mixture`
+    Inferred distribution
+"
 
 // ----------------------------------------------------------------------------
 
 %feature("docstring") OTMIXMOD::MixtureFactory::setSeed
-"Mixmod RNG seed accessor
+"Mixmod RNG seed accessor.
 
 Parameters
 ----------
@@ -17,4 +68,26 @@ seed : int
     Seed used to initialize the Mixmod RNG seed before the learning step.
     A negative seed will randomly initialize the RNG.
     The default value is 0.
+"
+
+// ----------------------------------------------------------------------------
+
+%feature("docstring") OTMIXMOD::MixtureFactory::setAtomsNumber
+"Atoms number accessor.
+
+Parameters
+----------
+atomsNumber : int
+    The number of atoms
+"
+
+// ----------------------------------------------------------------------------
+
+%feature("docstring") OTMIXMOD::MixtureFactory::getAtomsNumber
+"Atoms number accessor.
+
+Returns
+-------
+atomsNumber : int
+    The number of atoms
 "

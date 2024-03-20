@@ -86,9 +86,105 @@ install ( FILES __init__.py
           DESTINATION ${OTMIXMOD_PYTHON_MODULE_PATH}/${PACKAGE_NAME}
         )
 
+
+if (SPHINX_FOUND)
+
+  # create a build site-package from which sphinx can import
+  set (OTMIXMOD_PYTHON_BUILD_MODULE_PATH ${CMAKE_CURRENT_BINARY_DIR}/site-packages)
+  execute_process (COMMAND ${CMAKE_COMMAND} -E make_directory ${OTMIXMOD_PYTHON_BUILD_MODULE_PATH}/otmixmod)
+  foreach (module ${OTMIXMOD_PYTHON_MODULES})
+    execute_process (COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_BINARY_DIR}/${module}.py ${OTMIXMOD_PYTHON_BUILD_MODULE_PATH}/otmixmod/${module}.py)
+    # FIXME: get_target_property (suffix ${SWIG_MODULE_${module}_REAL_NAME} SUFFIX)
+    execute_process (COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_BINARY_DIR}/_${module}.so ${OTMIXMOD_PYTHON_BUILD_MODULE_PATH}/otmixmod/_${module}.so)
+  endforeach ()
+  foreach (file __init__.py)
+    execute_process (COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/${file} ${OTMIXMOD_PYTHON_BUILD_MODULE_PATH}/otmixmod/${file})
+  endforeach ()
+
+  # sphinx configuration
+  set (doc_formats)
+  list (APPEND doc_formats html)
+  list (APPEND doc_formats htmlhelp)
+  list (APPEND doc_formats latex)
+  list (APPEND doc_formats doctest)
+  list (APPEND doc_formats qthelp)
+  list (APPEND doc_formats devhelp)
+
+  set (SPHINX_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/sphinx_build)
+  set (SPHINX_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../doc)
+
+  file (MAKE_DIRECTORY ${SPHINX_BINARY_DIR}/_static) # currently empty
+
+  configure_file (${SPHINX_SOURCE_DIR}/conf.py.in ${SPHINX_BINARY_DIR}/conf.py @ONLY)
+
+  # get sphinx sources
+  file (GLOB_RECURSE sphinx_sources
+    ${SPHINX_SOURCE_DIR}/*.rst
+    ${SPHINX_SOURCE_DIR}/*.rst_t
+    ${SPHINX_SOURCE_DIR}/*.css_t
+    ${SPHINX_SOURCE_DIR}/*.conf
+    ${SPHINX_SOURCE_DIR}/*.py
+    ${SPHINX_SOURCE_DIR}/*.png
+    ${SPHINX_SOURCE_DIR}/*.html
+    ${SPHINX_SOURCE_DIR}/*.css
+    ${SPHINX_SOURCE_DIR}/*.jpg
+    ${SPHINX_SOURCE_DIR}/*.ico
+    ${SPHINX_SOURCE_DIR}/*.sty
+    ${SPHINX_SOURCE_DIR}/*.txt
+    ${SPHINX_SOURCE_DIR}/*.in
+    ${SPHINX_SOURCE_DIR}/*.inv
+  )
+
+  # copy sphinx sources
+  set (sphinx_clones)
+  foreach (file ${sphinx_sources})
+    if (EXISTS ${file})
+      file ( RELATIVE_PATH rel_file ${SPHINX_SOURCE_DIR} ${file} )
+      get_filename_component (rel_path ${rel_file} PATH)
+      file (MAKE_DIRECTORY ${SPHINX_BINARY_DIR}/${rel_path})
+      set (sphinx_clone ${SPHINX_BINARY_DIR}/${rel_file})
+      add_custom_command (OUTPUT ${sphinx_clone}
+        COMMAND ${CMAKE_COMMAND} -E copy ${file} ${sphinx_clone}
+        DEPENDS ${file}
+      )
+      list (APPEND sphinx_clones ${sphinx_clone})
+    endif ()
+  endforeach ()
+
+  set (SPHINX_FLAGS "-W -T" CACHE STRING "sphinx flags")
+  separate_arguments (SPHINX_FLAGS)
+
+  # generate sphinx rule for each format
+  foreach (format ${doc_formats})
+    add_custom_target ( sphinx_${format}
+                        COMMAND ${SPHINX_EXECUTABLE}
+                                  -b ${format}
+                                  -d ${SPHINX_BINARY_DIR}/.doctrees
+                                  ${SPHINX_FLAGS}
+                                  ${SPHINX_BINARY_DIR}
+                                  ${SPHINX_BINARY_DIR}/${format}
+                        DEPENDS ${sphinx_clones}
+                      )
+    foreach (MODULENAME ${OTMIXMOD_PYTHON_MODULES})
+      set (module_target ${MODULENAME}_python)
+      add_dependencies (sphinx_${format} ${module_target})
+    endforeach ()
+  endforeach ()
+
+  # build html by default
+  set_target_properties (sphinx_html PROPERTIES EXCLUDE_FROM_ALL OFF)
+
+  add_custom_command (OUTPUT ${SPHINX_BINARY_DIR}/latex/OpenTURNS.pdf
+                      WORKING_DIRECTORY ${SPHINX_BINARY_DIR}/latex
+                      COMMAND make all-pdf
+                    )
+  add_custom_target (sphinx_pdf DEPENDS ${SPHINX_BINARY_DIR}/latex/OpenTURNS.pdf)
+  add_dependencies (sphinx_pdf sphinx_latex)
+
+  install (DIRECTORY ${SPHINX_BINARY_DIR}/html DESTINATION ${OTMIXMOD_DOC_PATH})
+endif ()
+
 # wheel files
 configure_file (METADATA.in METADATA @ONLY)
-configure_file (WHEEL.in WHEEL @ONLY)
-install (DIRECTORY DESTINATION ${OTMIXMOD_PYTHON_MODULE_PATH}/${PACKAGE_NAME}-${PACKAGE_VERSION}.dist-info)
-install (FILES ${CMAKE_CURRENT_BINARY_DIR}/METADATA ${CMAKE_CURRENT_BINARY_DIR}/WHEEL
-	DESTINATION ${OTMIXMOD_PYTHON_MODULE_PATH}/${PACKAGE_NAME}-${PACKAGE_VERSION}.dist-info)
+install (FILES ${CMAKE_CURRENT_BINARY_DIR}/METADATA
+         DESTINATION ${OTMIXMOD_PYTHON_MODULE_PATH}/${PACKAGE_NAME}-${PACKAGE_VERSION}.dist-info)

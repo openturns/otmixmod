@@ -1,10 +1,13 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{Math_Notations}
+\ProvidesPackage{math_notations}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
 
 % For matrixes and vectors
 \newcommand{\vect}[1]{{\underline{#1}}}
 \newcommand{\mat}[1]{{\underline{\underline{#1}}}}
-\newcommand{\Tr}[1]{{{#1}^t}}
+\newcommand{\Tr}[1]{{#1}^{\text{\upshape\textsf T}}}
 
 % Bold letters 
 \newcommand{\bdA}{{\boldsymbol{A}}}
@@ -61,35 +64,46 @@
 \newcommand{\bdz}{{\boldsymbol{z}}}
 
 % special caracters
-\newcommand{\ca}{{\mathcal A}}
-\newcommand{\cb}{{\mathcal B}}
-\newcommand{\cc}{{\mathcal C}}
-\newcommand{\cd}{{\mathcal D}}
-\newcommand{\ce}{{\mathcal E}}
-\newcommand{\cf}{{\mathcal F}}
-\newcommand{\cg}{{\mathcal G}}
-\newcommand{\ch}{{\mathcal H}}
-\newcommand{\ck}{{\mathcal K}}
-\newcommand{\cl}{{\mathcal L}}
-\newcommand{\cn}{{\mathcal N}}
-\newcommand{\cm}{{\mathcal M}}
-\newcommand{\cp}{{\mathcal P}}
-\newcommand{\cs}{{\mathcal S}}
-\newcommand{\cu}{{\mathcal U}}
-\newcommand{\cw}{{\mathcal W}}
-\newcommand{\cx}{{\mathcal X}}
-\newcommand{\C}{{\mathbb C}}
-\newcommand{\E}{{\mathbb E}}
-\newcommand{\N}{{\mathbb N}}
-\renewcommand{\P}{{\mathbb P}}
-\newcommand{\Q}{{\mathbb Q}}
-\newcommand{\R}{{\mathbb R}}
-\newcommand{\Z}{{\mathbb Z}}
-\newcommand{\D}{{\mathrm{d}}}
+\newcommand{\cA}{{\mathcal A}}
+\newcommand{\cB}{{\mathcal B}}
+\newcommand{\cC}{{\mathcal C}}
+\newcommand{\cD}{{\mathcal D}}
+\newcommand{\cE}{{\mathcal E}}
+\newcommand{\cF}{{\mathcal F}}
+\newcommand{\cG}{{\mathcal G}}
+\newcommand{\cH}{{\mathcal H}}
+\newcommand{\cI}{{\mathcal I}}
+\newcommand{\cJ}{{\mathcal J}}
+\newcommand{\cK}{{\mathcal K}}
+\newcommand{\cL}{{\mathcal L}}
+\newcommand{\cM}{{\mathcal M}}
+\newcommand{\cN}{{\mathcal N}}
+\newcommand{\cO}{{\mathcal P}}
+\newcommand{\cP}{{\mathcal P}}
+\newcommand{\cQ}{{\mathcal Q}}
+\newcommand{\cR}{{\mathcal R}}
+\newcommand{\cS}{{\mathcal S}}
+\newcommand{\cT}{{\mathcal T}}
+\newcommand{\cU}{{\mathcal U}}
+\newcommand{\cV}{{\mathcal V}}
+\newcommand{\cW}{{\mathcal W}}
+\newcommand{\cX}{{\mathcal X}}
+\newcommand{\cY}{{\mathcal Y}}
+\newcommand{\cZ}{{\mathcal Z}}
+\newcommand{\Cset}{{\mathbb C}}
+\newcommand{\Eset}{{\mathbb E}}
+\newcommand{\Nset}{{\mathbb N}}
+\newcommand{\Pset}{{\mathbb P}}
+\newcommand{\Qset}{{\mathbb Q}}
+\newcommand{\Rset}{{\mathbb R}}
+\newcommand{\Zset}{{\mathbb Z}}
+\newcommand{\Diff}{{\mathrm{d}}}
 
 % short commands
 \newcommand{\un}[1]{\underline{#1}}
 \newcommand{\dpl}[1]{\displaystyle{#1}}
+\newcommand{\uw}{\underline{w}}
+\newcommand{\uW}{\underline{W}}
 \newcommand{\ux}{\underline{x}}
 \newcommand{\uX}{\underline{X}}
 \newcommand{\uy}{\underline{y}}
@@ -99,10 +113,16 @@
 \newcommand{\muX}{\underline{\mu}_{\:X}}
 \newcommand{\Var}[1]{{\rm Var}\left[ #1 \right]}
 \newcommand{\Cov}[1]{{\rm Cov}\left[ #1 \right]}
-\newcommand{\Esp}[1]{{\mathbb E}\left[ #1 \right]}
-\newcommand{\Prob}[1]{{\mathbb P}\left( #1 \right)}
+\newcommand{\Expect}[1]{{\mathbb E}\left[ #1 \right]}
+\newcommand{\Prob}[1]{{\mathbb P}\left[ #1 \right]}
 \newcommand{\pdf}{f_{\un{X}}(\un{x})}
 \newcommand{\ech}{\left\{ x_1, \, \dots\,, x_N  \right\}}
 \newcommand{\matcov} {\mathbf C}
 \newcommand{\matcor} {\mathbf R}
 \newcommand{\fcar}[2] {{\mathbf 1}_{#1}(#2)}
+\newcommand{\supp}[1] {{\rm supp}\left(#1\right)}
+\newcommand{\di}[1] {{\rm d}#1}
+\newcommand{\norm}[1] {\left\|#1\right\|}
+
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
