@@ -1,3 +1,7 @@
+= 0.17 release (2024-05-02)
+
+ * Maintenance release
+
 = 0.16 release (2024-01-09)
 
 - Depend on mixmod library (https://github.com/mixmod)
