@@ -6,6 +6,8 @@ OTMixmod Module
 
 OTMixmod is a module for Mixture inference using the `Mixmod <https://github.com/mixmod>`_ library.
 
+The documentation is available at `this link <https://openturns.github.io/otmixmod/master/>`_.
+
 More information can found at http://www.openturns.org
 
 
