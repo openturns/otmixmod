@@ -45,7 +45,7 @@ Notes
 Each value of the `covarianceModel` parameter defines a specific
 parametrization of the mixture of Gaussians.
 See (Biernacki et al., 2006) table 1 page 290 for details on these
-different parametrization.
+different parametrizations.
 
 References
 ----------
