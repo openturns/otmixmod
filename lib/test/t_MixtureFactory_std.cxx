@@ -71,6 +71,7 @@ int main (void)
       MixtureFactory factory(nb);
       OT::Indices labels(0);
       OT::Point logLikelihood(0);
+      factory.build(sample, labels, logLikelihood);
       if (nb == 1)
       {
         maxLL = logLikelihood[1];
