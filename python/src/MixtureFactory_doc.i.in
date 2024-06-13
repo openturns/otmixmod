@@ -39,7 +39,20 @@ covarianceModel : str, optional
     - Gaussian_pk_Lk_Dk_A_Dk
     - Gaussian_pk_L_Ck
     - Gaussian_pk_Lk_Ck
-"
+
+Notes
+-----
+Each value of the `covarianceModel` parameter defines a specific
+parametrization of the mixture of Gaussians.
+See (Biernacki et al., 2006) table 1 page 290 for details on these
+different parametrizations.
+
+References
+----------
+
+- Biernacki C., Celeux G., Govaert G., Langrognet F., (2006). 
+  Model-Based Cluster and Discriminant Analysis with the MIXMOD Software.
+  Computational Statistics and Data Analysis, vol. 51/2, pp. 587-600."
 
 // ----------------------------------------------------------------------------
 
