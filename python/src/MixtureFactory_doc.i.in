@@ -22,7 +22,30 @@ References
 
 - Biernacki C., Celeux G., Govaert G., Langrognet F., (2006). 
   Model-Based Cluster and Discriminant Analysis with the MIXMOD Software.
-  Computational Statistics and Data Analysis, vol. 51/2, pp. 587-600."
+  Computational Statistics and Data Analysis, vol. 51/2, pp. 587-600.
+
+Examples
+--------
+Estimate the parameters of the mixture of 2 Gaussians.
+
+>>> import openturns as ot
+>>> import otmixmod
+
+>>> factory = otmixmod.MixtureFactory(2, 'Gaussian_pk_L_Dk_A_Dk')
+>>> sample = [
+...     [1.5, 0.7],
+...     [0.2, -0.6],
+...     [2.1, 0.1],
+...     [1.2, 2.4],
+...     [2.2, 0.0],
+...     [-0.9, -2.1],
+...     [-1.7, -0.3],
+...     [0.7, 0.4],
+...     [-1.2, 1.1],
+...     [-0.5, -1.1],
+... ]
+>>> estimatedDistribution, labels, logLikelihood = factory.build(sample)
+"
 
 // ----------------------------------------------------------------------------
 
@@ -90,4 +113,24 @@ Examples
 >>> import otmixmod
 >>> otmixmod.MixtureFactory.GetValidCovarianceModels()[:3]
 [Gaussian_p_L_I,Gaussian_p_Lk_I,Gaussian_p_L_B]
+"
+
+// ----------------------------------------------------------------------------
+
+%feature("docstring") OTMIXMOD::MixtureFactory::BuildClusters
+"Partition a given sample into nbClusters according to the given labels.
+
+Parameters
+----------
+data : 2-d sequence of float
+    The sample
+labels : sequence of int
+    The index of the class of each point in the sample
+nbClusters : int
+    The number of clusters in the mixture
+
+Returns
+-------
+clusters : sequence of :class:`openturns.Sample`
+    The list of samples corresponding to each class
 "
