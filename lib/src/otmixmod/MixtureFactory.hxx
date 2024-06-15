@@ -41,6 +41,8 @@ public:
 
   typedef OT::Collection< OT::Sample > SampleCollection;
 
+  static OT::Description GetValidCovarianceModels();
+
   /** Default constructor */
   MixtureFactory();
 

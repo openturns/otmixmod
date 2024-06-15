@@ -24,7 +24,7 @@ coll.append(distribution3)
 distributionRef = ot.Mixture(coll)
 sample = distributionRef.getSample(size)
 
-for covarianceModel in ['Gaussian_pk_L_B', 'Gaussian_pk_L_Bk']:
+for covarianceModel in otmixmod.MixtureFactory.GetValidCovarianceModels():
     factory = otmixmod.MixtureFactory(3, covarianceModel)
     estimatedDistribution, labels, BICLogLikelihood = factory.build(sample)
     print(covarianceModel, "PDF=%.6f" %

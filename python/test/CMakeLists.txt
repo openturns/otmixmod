@@ -37,8 +37,9 @@ macro (ot_pyinstallcheck_test TESTNAME)
 endmacro ()
 
 
-ot_pyinstallcheck_test ( MixtureFactory_std )
-ot_pyinstallcheck_test ( MixtureFactory_expert )
+ot_pyinstallcheck_test (MixtureFactory_std)
+ot_pyinstallcheck_test (MixtureFactory_expert)
+ot_pyinstallcheck_test (docstring IGNOREOUT)
 
 add_custom_target ( pyinstallcheck COMMAND ${CMAKE_CTEST_COMMAND} -R "^pyinstallcheck_"
                     COMMENT "Run Python post-installation tests" )
