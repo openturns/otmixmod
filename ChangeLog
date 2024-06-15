@@ -1,3 +1,7 @@
+= 0.18 release (wip)
+
+ * Add GetValidCovarianceModels
+
 = 0.17 release (2024-05-02)
 
  * Maintenance release
