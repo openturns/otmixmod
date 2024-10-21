@@ -54,12 +54,12 @@ Estimate the parameters of the mixture of 2 Gaussians.
 
 Parameters
 ----------
-sample : :class:`openturns.Sample`
+sample : :py:class:`openturns.Sample`
     Sample
 
 Returns
 -------
-mixture : :class:`openturns.Mixture`
+mixture : :py:class:`openturns.Mixture`
     Inferred distribution
 "
 
@@ -105,7 +105,7 @@ atomsNumber : int
 
 Returns
 -------
-names : :class:`openturns.Description`
+names : :py:class:`openturns.Description`
     Valid covariance model names
     
 Examples
@@ -131,6 +131,6 @@ nbClusters : int
 
 Returns
 -------
-clusters : sequence of :class:`openturns.Sample`
+clusters : sequence of :py:class:`openturns.Sample`
     The list of samples corresponding to each class
 "
