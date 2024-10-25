@@ -1,9 +1,4 @@
-// SWIG file
-// Author : schueller
-// Date : 2008-08-28 17:36:47 +0200 (Thu, 28 Aug 2008)
-
 %module(docstring="otmixmod module") otmixmod
-%feature("autodoc","1");
 
 %{
 #include "openturns/OT.hxx"

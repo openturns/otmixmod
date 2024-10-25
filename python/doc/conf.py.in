@@ -292,4 +292,4 @@ texinfo_documents = [
 #texinfo_show_urls = 'footnote'
 
 # If true, Sphinx will warn about all references where the target cannot be found.
-# nitpicky = True
+nitpicky = True
