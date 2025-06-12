@@ -14,7 +14,7 @@ FFLAGS="${FFLAGS:-%optflags}" ; export FFLAGS ; \
 %__cmake -DCMAKE_INSTALL_PREFIX:PATH=%{_prefix}
 
 Name:           otmixmod
-Version:        0.18
+Version:        0.19
 Release:        0%{?dist}
 Summary:        OpenTURNS module
 Group:          System Environment/Libraries
