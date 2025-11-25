@@ -1,12 +1,17 @@
 ot_add_current_dir_to_include_dirs ()
 
-ot_add_source_file ( MixtureFactory.cxx )
+ot_add_source_file (MixtureFactory.cxx)
 
-ot_install_header_file ( MixtureFactory.hxx )
+ot_install_header_file (MixtureFactory.hxx)
 
-include_directories ( ${INTERNAL_INCLUDE_DIRS} )
+include_directories (${INTERNAL_INCLUDE_DIRS})
 
-add_library ( otmixmod SHARED ${SOURCEFILES} )
+add_library (otmixmod ${SOURCEFILES})
+set_target_properties (otmixmod PROPERTIES POSITION_INDEPENDENT_CODE ON)
+if (BUILD_SHARED_LIBS)
+  set_target_properties (otmixmod PROPERTIES COMPILE_DEFINITIONS "OTMIXMOD_DLL_EXPORTS")
+endif ()
+
 if ( NOT DEFINED LIB_VERSION ) 
   set ( LIB_VERSION 0.0.0 )
 endif ()

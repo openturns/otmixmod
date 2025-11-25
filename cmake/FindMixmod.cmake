@@ -8,9 +8,6 @@
 #  MIXMOD_INCLUDE_DIRS - libsvm includes
 #  MIXMOD_LIBRARY - where to find the LibSVM library
 #  MIXMOD_LIBRARIES - aditional libraries
-#  MIXMOD_MAJOR_VERSION - major version
-#  MIXMOD_MINOR_VERSION - minor version
-#  MIXMOD_VERSION_STRING - version (ex. 2.9.0)
 #  MIXMOD_ROOT_DIR - root dir (ex. /usr/local)
 
 #=============================================================================

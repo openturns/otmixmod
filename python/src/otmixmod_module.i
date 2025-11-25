@@ -13,4 +13,5 @@
 %import uncertainty_module.i
 
 // The new classes
+%include otmixmod/OTMIXMODprivate.hxx
 %include MixtureFactory.i

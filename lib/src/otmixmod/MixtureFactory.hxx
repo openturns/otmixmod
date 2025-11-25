@@ -21,6 +21,8 @@
 #ifndef OTMIXMOD_MIXTUREFACTORY_HXX
 #define OTMIXMOD_MIXTUREFACTORY_HXX
 
+#include "otmixmod/OTMIXMODprivate.hxx"
+
 #include <openturns/OTprivate.hxx>
 #include <openturns/DistributionFactoryImplementation.hxx>
 #include <openturns/Mixture.hxx>
@@ -33,7 +35,7 @@ namespace OTMIXMOD
 /**
  * @class MixtureFactory
  */
-class MixtureFactory
+class OTMIXMOD_API MixtureFactory
   : public OT::DistributionFactoryImplementation
 {
   CLASSNAME
