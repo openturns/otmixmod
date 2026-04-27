@@ -108,7 +108,7 @@ if sample.getDimension() == 2:
     c.setColor("red")
     c.setPointStyle("bullet")
     ctmp = g.getDrawable(0)
-    g.setDrawable(c, 0)
+    g.setDrawable(0, c)
     g.add(ctmp)
     view = otv.View(g)
 

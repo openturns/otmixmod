@@ -2,7 +2,7 @@
  * @brief Top-level class for mixture factory using MixMod.
  *
  *
- *  Copyright 2005-2024 Airbus-EDF-IMACS-Phimeca
+ *  Copyright 2005-2026 Airbus-EDF-IMACS-Phimeca
  *
  *  OTMixmod is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -56,8 +56,10 @@ public:
   MixtureFactory * clone() const override;
 
   /** Here is the interface that all derived class must implement */
+#ifndef SWIG
   using OT::DistributionFactoryImplementation::build;
   OT::Distribution build(const OT::Sample & sample) const override;
+#endif
   OT::Distribution build(const OT::Sample & sample,
                          OT::Indices & labels,
                          OT::Point & BICLogLikelihood) const;

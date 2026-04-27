@@ -2,7 +2,7 @@
 %global python_sitearch %{_libdir}/python%(python3 -c "import sysconfig; print(sysconfig.get_python_version())")/site-packages
 
 Name:           otmixmod
-Version:        0.20
+Version:        0.21
 Release:        0%{?dist}
 Summary:        OpenTURNS module
 Group:          System Environment/Libraries
