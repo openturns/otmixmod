@@ -27,6 +27,9 @@
 #include <openturns/Path.hxx>
 #include <openturns/Os.hxx>
 
+#include <vector>
+#include <cstdint>
+
 #include <mixmod/Clustering/ClusteringInput.h>
 #include <mixmod/Clustering/ClusteringOutput.h>
 #include <mixmod/Clustering/ClusteringMain.h>
@@ -99,16 +102,15 @@ OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample,
   // Map the data from OT to Mixmod
   // A sample must be presented as a double **
   const OT::UnsignedInteger dimension(sample.getDimension());
-  double ** matrix(new double * [sampleSize]);
-  for (OT::UnsignedInteger i = 0; i < sampleSize; ++i) matrix[i] = new double[dimension];
+  std::vector<double> matrixBuffer(sampleSize * dimension);
+  std::vector<double *> matrix(sampleSize);
+  for (OT::UnsignedInteger i = 0; i < sampleSize; ++i) matrix[i] = matrixBuffer.data() + i * dimension;
   // Copy the data into simple C structures as needed by MixMod
   for (OT::UnsignedInteger i = 0; i < sampleSize; ++i)
     for (OT::UnsignedInteger j = 0; j < dimension; ++j)
-      matrix[i][j] = sample[i][j];
+      matrix[i][j] = sample(i, j);
 
-  XEM::GaussianData * gaussianData = new XEM::GaussianData(sampleSize, dimension, matrix);
-  for (OT::UnsignedInteger i = 0; i < sampleSize; ++i) delete [] matrix[i];
-  delete [] matrix;
+  XEM::GaussianData * gaussianData = new XEM::GaussianData(sampleSize, dimension, matrix.data());
 
   // Create a Mixmod description
   XEM::DataDescription dataDescription(gaussianData);
@@ -130,9 +132,10 @@ OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample,
 
   XEM::ClusteringModelOutput * clusteringModelOutput(clusteringOutput->getClusteringModelOutput(0));
   XEM::ParameterDescription * paramDescription(clusteringModelOutput->getParameterDescription());
-  if (paramDescription == NULL) throw OT::InternalException(HERE) << "Error: Mixmod is unable to estimate a mixture with the given data and the current number of atoms. You may have repeated points in your data, a situation not well handled by Mixmod.";
+  if (paramDescription == nullptr) throw OT::InternalException(HERE) << "Error: Mixmod is unable to estimate a mixture with the given data and the current number of atoms. You may have repeated points in your data, a situation not well handled by Mixmod.";
   XEM::Parameter * paramTmp(paramDescription->getParameter());
   XEM::GaussianEDDAParameter *param = dynamic_cast< XEM::GaussianEDDAParameter * >(paramTmp);
+  if (param == nullptr) throw OT::InternalException(HERE) << "Error: Mixmod returned an unexpected parameter type";
 
   OT::Mixture::DistributionCollection coll(0);
   for (OT::UnsignedInteger i = 0; i < atomsNumber_; ++i)
@@ -156,6 +159,7 @@ OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample,
     coll.add(atom);
   }
   XEM::LabelDescription * labelDescription(clusteringModelOutput->getLabelDescription());
+  if (labelDescription == nullptr) throw OT::InternalException(HERE) << "Error: Mixmod did not return cluster labels";
   labels = OT::Indices(sampleSize);
   // Labels run from 1 to nbAtoms, we want indices in {0,\dots,nbAtoms-1}
   // getTabLabel() returns a copy of original vector, it must be destroyed explicitly
