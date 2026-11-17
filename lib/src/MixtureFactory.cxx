@@ -137,12 +137,13 @@ OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample,
   XEM::GaussianEDDAParameter *param = dynamic_cast< XEM::GaussianEDDAParameter * >(paramTmp);
   if (param == nullptr) throw OT::InternalException(HERE) << "Error: Mixmod returned an unexpected parameter type";
 
-  OT::Mixture::DistributionCollection coll(0);
+  OT::Mixture::DistributionCollection coll(atomsNumber_);
+  OT::Point weights(atomsNumber_);
   for (OT::UnsignedInteger i = 0; i < atomsNumber_; ++i)
   {
     OT::Point mean(dimension);
     for (OT::UnsignedInteger j = 0; j < dimension; ++j) mean[j] = param->getTabMean()[i][j];
-    OT::Scalar w(param->getTabProportion()[i]);
+    weights[i] = param->getTabProportion()[i];
     // A Mixmod matrix is a strange object, with no accessor to its elements...
     double ** xemMatrix(param->getTabSigma()[i]->storeToArray());
     OT::CovarianceMatrix covariance(dimension);
@@ -154,9 +155,7 @@ OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample,
     }
     delete [] xemMatrix;
     // Build the current atom
-    OT::Normal atom(mean, covariance);
-    atom.setWeight(w);
-    coll.add(atom);
+    coll[i] = OT::Normal(mean, covariance);
   }
   XEM::LabelDescription * labelDescription(clusteringModelOutput->getLabelDescription());
   if (labelDescription == nullptr) throw OT::InternalException(HERE) << "Error: Mixmod did not return cluster labels";
@@ -171,7 +170,7 @@ OT::Mixture MixtureFactory::buildAsMixture(const OT::Sample & sample,
   BICLogLikelihood[0] = clusteringModelOutput->getLikelihood();
   BICLogLikelihood[1] = clusteringModelOutput->getCompletedLikelihood();
   BICLogLikelihood[2] = clusteringModelOutput->getEntropy();
-  return OT::Mixture(coll);
+  return OT::Mixture(coll, weights);
 }
 
 OT::Distribution MixtureFactory::build() const
